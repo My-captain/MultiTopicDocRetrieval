@@ -1,0 +1,280 @@
+[
+  {
+    "authors": [
+      "Ammar MJ",
+      "Hsu J",
+      "Chiang A",
+      "Ho AC",
+      "Regillo CD"
+    ],
+    "publication": "Curr Opin Ophthalmol. 2020 May;31(3):215-221. doi: 10.1097/ICU.0000000000000657.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nPURPOSE OF REVIEW:\nThe purpose of this review is to describe the current clinical landscape of potential future therapies for both nonexudative (dry) and exudative (wet) age-related macular degeneration (AMD). We highlight some of the more promising treatments that are furthest along in development.\nRECENT FINDINGS:\nPatients with dry AMD have long been hoping for a highly efficacious treatment that may slow disease progression or even help regain vision. Patients with wet AMD have many effective treatment options but still there are those who have suboptimal responses or are burdened by the high frequency of treatment. We detail exciting new concepts and targets for novel medications. Specifically, for dry AMD we discuss research looking at complement inhibition, neuroprotection, visual cycle modulators, cell-based therapies, and anti-inflammatory agents. For wet AMD we summarize new, potentially more durable anti-vascular endothelial growth factor agents, extended release options, and gene therapy.\nSUMMARY:\nThere are promising new strategies for AMD. Many of the potential new treatments are in or have recently completed phase 2 or phase 3 clinical trials with promising results thus far, including some that have received US Food and Drug Administration approval. Additional therapeutic breakthroughs will likely continue to occur thanks to the number of clinical trials that are nearing the finish line.",
+    "doi_url": "https://doi.org/10.1097/ICU.0000000000000657",
+    "title": "Age-related macular degeneration therapy: a review.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Haritoglou C",
+      "Maier M",
+      "Neubauer AS",
+      "Augustin AJ"
+    ],
+    "publication": "Expert Opin Pharmacother. 2020 Mar;21(4):467-475. doi: 10.1080/14656566.2020.1713093. Epub 2020 Jan 20.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nIntroduction: Diabetic macular edema (DME) is a sight threatening disease and a major cause for blindness for people in working age. The pathogenesis is multifactorial and complex. The pharmacotherapy of DME addresses both the inhibition of vascular endothelial growth factor (VEGF) by the intravitreal injection of VEGF inhibitors and inflammatory processes by the intravitreal application of steroids. Several trials have been published reporting on the efficacy and safety of these treatments.Areas covered: This review discusses original research articles including basic science and clinical studies as well as review articles focusing on the role of inflammation and VEGF expression in DME. It discusses newly published clinical trials on intravitreal pharmacotherapy for DME. The literature was searched using Medline/PubMed and was selected given its relevance for the topic to be discussed.Expert opinion: Our knowledge regarding the pathophysiology of diabetic macular edema has significantly increased. Some of these insights have been successfully transferred into current treatment strategies already including VEGF suppression or anti-inflammatory treatments using steroids. The identification of additional pathophysiological aspects and their relevance as potential treatment targets will be a future challenge in the treatment of DME. A better knowledge on the complex pathophysiology will also help to establish combination strategies.",
+    "doi_url": "https://doi.org/10.1080/14656566.2020.1713093",
+    "title": "Current concepts of pharmacotherapy of diabetic macular edema.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Varadarajan AV",
+      "Bavishi P",
+      "Ruamviboonsuk P",
+      "Chotcomwongse P",
+      "Venugopalan S",
+      "Narayanaswamy A",
+      "Cuadros J",
+      "Kanai K",
+      "Bresnick G",
+      "Tadarati M",
+      "Silpa-Archa S",
+      "Limwattanayingyong J",
+      "Nganthavee V",
+      "Ledsam JR",
+      "Keane PA",
+      "Corrado GS",
+      "Peng L",
+      "Webster DR"
+    ],
+    "publication": "Nat Commun. 2020 Jan 8;11(1):130. doi: 10.1038/s41467-019-13922-8.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nCenter-involved diabetic macular edema (ci-DME) is a major cause of vision loss. Although the gold standard for diagnosis involves 3D imaging, 2D imaging by fundus photography is usually used in screening settings, resulting in high false-positive and false-negative calls. To address this, we train a deep learning model to predict ci-DME from fundus photographs, with an ROC-AUC of 0.89 (95% CI: 0.87-0.91), corresponding to 85% sensitivity at 80% specificity. In comparison, retinal specialists have similar sensitivities (82-85%), but only half the specificity (45-50%, p < 0.001). Our model can also detect the presence of intraretinal fluid (AUC: 0.81; 95% CI: 0.81-0.86) and subretinal fluid (AUC 0.88; 95% CI: 0.85-0.91). Using deep learning to make predictions via simple 2D images without sophisticated 3D-imaging equipment and with better than specialist performance, has broad relevance to many other applications in medical imaging.",
+    "doi_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6949287/",
+    "title": "Predicting optical coherence tomography-derived diabetic macular edema grades from fundus photographs using deep learning.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Ghosh S",
+      "Stepicheva N",
+      "Yazdankhah M",
+      "Shang P",
+      "Watson AM",
+      "Hose S",
+      "Liu H",
+      "Weiss J",
+      "Zigler JS Jr",
+      "Valapala M",
+      "Watkins SC",
+      "Sinha D"
+    ],
+    "publication": "Cell Mol Life Sci. 2020 Mar;77(5):835-851. doi: 10.1007/s00018-019-03423-8. Epub 2020 Jan 4.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nLipocalins are a family of secreted adipokines which play important roles in various biological processes. Lipocalin-2 (LCN-2) has been shown to be involved in acute and chronic inflammation. This particular protein is critical in the pathogenesis of several diseases including cancer, diabetes, obesity, and multiple sclerosis. Herein, we discuss the general molecular basis for the involvement of LCN-2 in acute infections and chronic disease progression and also ascertain the probable role of LCN-2 in ocular diseases, particularly in age-related macular degeneration (AMD). We elaborate on the signaling cascades which trigger LCN-2 upregulation in AMD and suggest therapeutic strategies for targeting such pathways.",
+    "doi_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7079812/",
+    "title": "The role of lipocalin-2 in age-related macular degeneration (AMD).",
+    "references": null
+  },
+  {
+    "authors": [
+      "Blasiak J"
+    ],
+    "publication": "Cell Mol Life Sci. 2020 Mar;77(5):789-805. doi: 10.1007/s00018-019-03420-x. Epub 2020 Jan 2.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nAge-related macular degeneration (AMD) is a complex eye disease underlined by the death of photoreceptors and degeneration of retinal pigment epithelium (RPE) and choriocapillaris (CC). The mechanism(s) responsible for massive and progressive retinal degeneration is not completely known. Senescence, a state of permanent inhibition of cell growth, may be induced by many factors important for AMD pathogenesis and results in senescence-associated secretory phenotype (SASP) that releases growth factors, cytokines, chemokines, proteases and other molecules inducing inflammation and other AMD-related effects. These effects can be induced in the affected cell and neighboring cells, leading to progression of AMD phenotype. Senescent cells also release reactive oxygen species that increase SASP propagation. Many other pathways of senescence-related AMD pathogenesis, including autophagy, the cGAS-STING signaling, degeneration of CC by membrane attack complex, can be considered. A2E, a fluorophore present in lipofuscin, amyloid-beta peptide and humanin, a mitochondria-derived peptide, may link AMD with senescence. Further studies on senescence in AMD pathogenesis to check the possibility of opening a perspective of the use of drugs killing senescent cells (senolytics) and terminating SASP bystander effects (senostatics) might be beneficial for AMD that at present is an incurable disease.",
+    "doi_url": "https://doi.org/10.1007/s00018-019-03420-x",
+    "title": "Senescence in the pathogenesis of age-related macular degeneration.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Gemenetzi M",
+      "Lotery AJ"
+    ],
+    "publication": "Cell Mol Life Sci. 2020 Mar;77(5):807-818. doi: 10.1007/s00018-019-03421-w. Epub 2020 Jan 2.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nThe study of epigenetics has explained some of the 'missing heritability' of age-related macular degeneration (AMD). The epigenome also provides a substantial contribution to the organisation of the functional retina. There is emerging evidence of specific epigenetic mechanisms associated with AMD. This 'AMD epigenome' may offer the chance to develop novel AMD treatments.",
+    "doi_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7058675/",
+    "title": "Epigenetics in age-related macular degeneration: new discoveries and future perspectives.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Behnke V",
+      "Wolf A",
+      "Langmann T"
+    ],
+    "publication": "Cell Mol Life Sci. 2020 Mar;77(5):781-788. doi: 10.1007/s00018-019-03419-4. Epub 2020 Jan 2.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nAge-related macular degeneration (AMD) is a leading cause of visual impairment of the elderly population. Since AMD is a multifactorial age-related disease with various genetic risk factors, the understanding of its complex pathophysiology is still limited. However, animal experiments, genome-wide association data and the molecular profiling of AMD patient samples have highlighted a key role of systemic and local immune processes that contribute to this chronic eye disease. In this overview article, we concentrate on the role of lymphocytes and mononuclear phagocytes and their interplay in triggering a persistent immune response in the AMD retina. We preferentially review findings from human immune cell analyses and complement these with related findings in experimental models. We conclude that both immune cell types as their signaling network may be a rich source to identify novel molecular targets for immunomodulation in AMD.",
+    "doi_url": "https://doi.org/10.1007/s00018-019-03419-4",
+    "title": "The role of lymphocytes and phagocytes in age-related macular degeneration (AMD).",
+    "references": null
+  },
+  {
+    "authors": [
+      "Kauppinen A"
+    ],
+    "publication": "Cell Mol Life Sci. 2020 Mar;77(5):779-780. doi: 10.1007/s00018-019-03418-5. Epub 2020 Jan 2.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nProlonged life expectancies contribute to the increasing prevalence of age-related macular degeneration (AMD) that is already the leading cause of severe vision loss among the elderly in developed countries. In dry AMD, the disease culminates into vast retinal atrophy, whereas the wet form is characterized by retinal edema and sudden vision loss due to neovascularization originating from the choroid beneath the Bruch's membrane. There is no treatment for dry AMD and despite intravitreal injections of anti-vascular endothelial growth factor (VEGF) that suppress the neovessel formation, also wet AMD needs new therapies to prevent the disease progression and to serve patients lacking of positive response to current medicines. Knowledge on disease mechanisms is a prerequisite for the drug development, which is hindered by the multifactorial nature of AMD. Numerous distinguished publications have revealed AMD mechanisms at the cellular and molecular level and in this multi-author review, we take a bit broader look at the topic with some novel aspects.",
+    "doi_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7058669/",
+    "title": "Introduction to the multi-author review on macular degeneration.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Mammadzada P",
+      "Corredoira PM",
+      "André H"
+    ],
+    "publication": "Cell Mol Life Sci. 2020 Mar;77(5):819-833. doi: 10.1007/s00018-019-03422-9. Epub 2019 Dec 31.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nUnderstanding the mechanisms that underlie age-related macular degeneration (AMD) has led to the identification of key molecules. Hypoxia-inducible transcription factors (HIFs) have been associated with choroidal neovascularization and the progression of AMD into the neovascular clinical phenotype (nAMD). HIFs regulate the expression of multiple growth factors and cytokines involved in angiogenesis and inflammation, hallmarks of nAMD. This knowledge has propelled the development of a new group of therapeutic strategies focused on gene therapy. The present review provides an update on current gene therapies in ocular angiogenesis, particularly nAMD, from both basic and clinical perspectives.",
+    "doi_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7058677/",
+    "title": "The role of hypoxia-inducible factors in neovascular age-related macular degeneration: a gene therapy perspective.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Skowronska-Krawczyk D",
+      "Chao DL"
+    ],
+    "publication": "Adv Exp Med Biol. 2019;1185:39-43. doi: 10.1007/978-3-030-27378-1_7.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nAge-related macular degeneration (AMD) is one of the leading causes of blindness worldwide. Long-chain and very long-chain polyunsaturated fatty acids (LC and VLC-PUFAs) have been linked to AMD pathogenesis through epidemiologic, biochemical, and genetic studies; however, the exact mechanisms of pathogenesis are unknown. Here, we review the scientific and clinical evidence supporting the role of PUFAs in AMD and discuss future directions for elucidating the roles of these fatty acids in AMD pathogenesis.",
+    "doi_url": "https://doi.org/10.1007/978-3-030-27378-1_7",
+    "title": "Long-Chain Polyunsaturated Fatty Acids and Age-Related Macular Degeneration.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Schnabolk G"
+    ],
+    "publication": "Adv Exp Med Biol. 2019;1185:27-31. doi: 10.1007/978-3-030-27378-1_5.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nPrevalence of age-related macular degeneration (AMD), the leading cause of blindness in the United States, increases greatly with age. While age is the greatest risk factor of AMD, other risks such as smoking, family history, complement pathway activation, and race exist. Various systemic inflammatory diseases share many of these risk factors with AMD, as well as a similar inflammatory profile. Due to these similarities, patient database studies analyzing the association between patients with various systemic diseases and AMD have been performed. In this review we will summarize recent finding on this subject and discuss the implications on AMD diagnosis. By gaining greater insight into the association between chronic systemic inflammation and AMD, implications for novel therapeutic approaches to treat AMD pathology may be identified.",
+    "doi_url": "https://doi.org/10.1007/978-3-030-27378-1_5",
+    "title": "Systemic Inflammatory Disease and AMD Comorbidity.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Figueroa AG",
+      "McKay BS"
+    ],
+    "publication": "Adv Exp Med Biol. 2019;1185:15-19. doi: 10.1007/978-3-030-27378-1_3.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nAge-related macular degeneration (AMD) is the most common cause of irreversible blindness. We do not know the cause of the disease and have inadequate prevention and treatment strategies for those at risk or affected. The greatest risk factors include age and race, with the white population at the highest risk for the disease. We developed the hypothesis that pigmentation in the retinal pigment epithelium (RPE) protects darkly pigmented individuals from AMD. We have tested this hypothesis in multiple ways including dissecting the pigmentation pathway in RPE using albinism-related tools, identification of a G protein-coupled receptor in the pigmentation pathway that drives expression of trophic factors, and using a very large retrospective chart analysis to test whether the ligand for the receptor prevents AMD. In total, our results indicate that pigmentation of the RPE is a cornerstone of RPE-retinal interaction and support and that the receptor in the pigmentation pathway most likely underlies the racial bias of the disease. The ligand for that receptor is an ideal candidate as a preventative and treatment for AMD. Here we summarize these results, discussing the research in its entirety with one overall goal, treatment or prevention of AMD.",
+    "doi_url": "https://doi.org/10.1007/978-3-030-27378-1_3",
+    "title": "GPR143 Signaling and Retinal Degeneration.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Choudhary M",
+      "Malek G"
+    ],
+    "publication": "Adv Exp Med Biol. 2019;1185:9-13. doi: 10.1007/978-3-030-27378-1_2.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nAge-related macular degeneration (AMD) continues to be the leading cause of visual impairment for the elderly in developed countries. It is a complex, multifactorial, progressive disease with diverse molecular pathways regulating its pathogenesis. One of the cardinal features of the early clinical subtype of AMD is the accumulation of lipid- and protein-rich deposits within Bruch's membrane, called drusen, which can be visualized by fundus imaging. Currently, multiple in vitro and in vivo model systems exist, which can be used to help tease out mechanisms associated with different molecular pathways driving disease initiation and progression. Given the lack of treatments for patients suffering from the dry form of AMD, it is imperative to appreciate the different known morphological endpoints associated with the various pathogenic pathways, in order to derive further insights, for the ultimate purpose of disease modeling and development of effective therapeutic interventions.",
+    "doi_url": "https://doi.org/10.1007/978-3-030-27378-1_2",
+    "title": "A Review of Pathogenic Drivers of Age-Related Macular Degeneration, Beyond Complement, with a Focus on Potential Endpoints for Testing Therapeutic Interventions in Preclinical Studies.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Nekolová J",
+      "Kremláček J",
+      "Kuba M",
+      "Středová M",
+      "Morávková D",
+      "Drtílková K",
+      "Jirásková N"
+    ],
+    "publication": "Cesk Slov Oftalmol. 2019 Summer;75(3):130-135. doi: 10.31348/2019/3/3.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nPURPOSE:\nTo present pilot results of the project in which the primary goal is to optimize way how to increase the quality of life of patients with the stable maculopathy by implanting intraocular Scharioth macular lens (SML) and modulating visual plasticity by a transcranial electrical stimulation (tES) together with a visual rehabilitation.\nMATERIALS AND METHODS:\nThe study will include 20 patients with stable maculopathy (mainly age-related macular degeneration - AMD) who underwent cataract surgery in past and are eligible for SML implantation. The duration of the project is 3 years. During the first year of the project 17 patients were screened, SML implantation was recommended to 4 of them. They met the indication criteria of SML implantation and SML was implanted into the better seeing eye. The third postoperative day, the tES sessions started and were applied 20 times in the first month after SML implantation. The stimulation was delivered in double blind design (a stimulated and a shame group). Visual exercises and rehabilitation took place during the tES. The patients were examined ophthalmologically and also using electrophysiological methods.\nRESULTS:\nBefore the implantation, the best corrected distance visual acuity was 0.23. At near it was Jaeger number 15 uncorrected, with +3.0 sphere dioptres J.No.10.5 and with +6.0 sph dpt J.No. 4.5. After the surgery and visual rehabilitation BCVA was 0.13 after 3 weeks, 0.2 after 2 months and 0.14 after 6 months. At near it was uncorrected J.No.7.5 after 3 weeks, J.No.7 after 2 months and J.No.5 after 6 months.\nCONCLUSION:\nAccording to a few participants, the impact of SML implantation together with intensive visual rehabilitation on vision at near and on satisfaction of patients with AMD could not be significantly established. Nevertherless, these patients are limited in their daily activities and SML is one of the solutions for them. The project is ongoing and blinded still, there is also a need of more participants to assess the effect of tES on vision, the results will be presented. We have proven the safety of methods used in the project.",
+    "doi_url": "https://doi.org/10.31348/2019/3/3",
+    "title": "Methods of improving the quality of life in patients with stable maculopathy-pilot results of a new study.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Markham A"
+    ],
+    "publication": "Drugs. 2019 Dec;79(18):1997-2000. doi: 10.1007/s40265-019-01231-9.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nBrolucizumab (Beovu®) is a low molecular weight, single-chain antibody fragment vascular endothelial growth factor (VEGF) inhibitor being developed by Novartis for the treatment of exudative (wet) age-related macular degeneration (AMD), diabetic macular oedema and macular oedema secondary to retinal vein occlusion. Based primarily on the results of the phase III HAWK and HARRIER trials brolucizumab was recently approved in the US for the treatment of wet AMD. This article summarizes the milestones in the development of brolucizumab leading to this first approval.",
+    "doi_url": "https://doi.org/10.1007/s40265-019-01231-9",
+    "title": "Brolucizumab: First Approval.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Srinivas S",
+      "Verma A",
+      "Nittala MG",
+      "Alagorie AR",
+      "Nassisi M",
+      "Gasperini J",
+      "Sadda SR"
+    ],
+    "publication": "Am J Ophthalmol. 2020 Mar;211:183-190. doi: 10.1016/j.ajo.2019.11.014. Epub 2019 Nov 20.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nPURPOSE:\nTo study the effect of monthly 0.3-mg intravitreal ranibizumab injections on intraretinal hard exudates (HEs) and correlate the effect with macular thickness in eyes with diabetic macular edema (DME).\nDESIGN:\nRandomized, controlled trial.\nMETHODS:\nTwenty-four eyes of 24 subjects with DME were included in this institutional review board-approved, prospective longitudinal study. Subjects were randomly assigned to receive monthly intravitreal ranibizumab injections either until macular edema resolved or until both macular edema and HEs resolved. All subjects underwent spectral-domain optical coherence tomography imaging (Cirrus OCT), at baseline and monthly for 12 months. Mean HE area and mean macular thickness at baseline and month 12 were compared using a paired t test and correlated with Pearson analysis.\nRESULTS:\nThe average age of the 24 subjects was 65 (±8.55) years. There was a significant decrease (P = .001) in mean HE area from baseline (0.48 ± 0.43 mm2) to month 12 (0.17 ± 0.19 mm2). There was a significant increase (P < .001) in best-corrected visual acuity from a letter score of 63.38 (±7.92) at baseline to 76.38 (±8.93) at month 12. There was no additional vision benefit for continuing to treat with monthly injections for persistent HE in the absence of macular thickening.\nCONCLUSION:\nIn eyes with DME, monthly intravitreal ranibizumab injections resulted in significant reduction in intraretinal HEs that paralleled reductions in macular thickness and volume. Baseline foveal HEs were associated with worse vision outcomes, and continued treatment for persistent HEs in the absence of edema did not result in better vision.\nCopyright © 2019. Published by Elsevier Inc.",
+    "doi_url": "https://doi.org/10.1016/j.ajo.2019.11.014",
+    "title": "Effect of Intravitreal Ranibizumab on Intraretinal Hard Exudates in Eyes with Diabetic Macular Edema.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Jabbarpoor Bonyadi MH",
+      "Baghi A",
+      "Ramezani A",
+      "Yaseri M",
+      "Soheilian M"
+    ],
+    "publication": "Ophthalmic Surg Lasers Imaging Retina. 2019 Nov 1;50(11):684-690. doi: 10.3928/23258160-20191031-03.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nBACKGROUND AND OBJECTIVE:\nTo report the correlation of central macular thickness (CMT) and best-corrected visual acuity (BCVA) after 1-year treatment by two doses (2.5 mg or 1.25 mg) of intravitreal ziv-aflibercept (IVZ) versus bevacizumab (IVB) in eyes with diabetic macular edema (DME).\nPATIENTS AND METHODS:\nIn this study, the correlation of CMT and BCVA changes of the eyes enrolled in a previous clinical trial of 123 eyes were re-evaluated. The correlation of BCVA and CMT changes at each visit was evaluated in the three study arms individually. Then, the eyes in each of the arms were classified at each follow-up visit into three subgroups based on their CMT changes related to the baseline CMT: CMT decrease of 30% or more of baseline CMT, between 10% to 29% of baseline CMT, and less than 9% of baseline CMT or CMT increase.\nRESULTS:\nBCVA and CMT changes were correlated significantly (P < .05) in all and in half of the follow-up visits, respectively, in the eyes treated by IVZ 1.25 mg and IVB (r = 0.554 and r = 0.617 at 1 year, respectively). Nevertheless, such a significant correlation was not detected in the eyes treated by IVZ 2.5 mg in any of the follow-up visits (r = 0.202 at 1 year; P = .259). In the IVZ 2.5 mg group, BCVA improvement was observed in all subgroups with each level of CMT reductions.\nCONCLUSION:\nZiv-aflibercept 2.5 mg might have a beneficial effect on DME beyond thickness reduction. [Ophthalmic Surg Lasers Imaging Retina. 2019;50:684-690.].\nCopyright 2019, SLACK Incorporated.",
+    "doi_url": "https://doi.org/10.3928/23258160-20191031-03",
+    "title": "Correlation of Macular Thickness and Visual Acuity in DME Treated by Two Doses of Intravitreal Ziv-Aflibercept Versus Bevacizumab: Analysis of a Randomized, Three-Armed Clinical Trial.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Hyttinen JMT",
+      "Kannan R",
+      "Felszeghy S",
+      "Niittykoski M",
+      "Salminen A",
+      "Kaarniranta K"
+    ],
+    "publication": "Int J Mol Sci. 2019 Nov 18;20(22). pii: E5800. doi: 10.3390/ijms20225800.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nAge-related macular degeneration (AMD) is a mounting cause of loss of sight in the elderly in the developed countries, a trend enhanced by the continual ageing of the population. AMD is a multifactorial and only partly understood, malady. Unfortunately, there is no effective treatment for most AMD patients. It is known that oxidative stress (OS) damages the retinal pigment epithelium (RPE) and contributes to the progression of AMD. We review here the potential importance of two OS-related cellular systems in relation to AMD. First, the nuclear factor erythroid 2-related factor 2 (NFE2L2; NRF2)-mediated OS response signalling pathway is important in the prevention of oxidative damage and a failure of this system could be critical in the development of AMD. Second, epithelial-to-mesenchymal transition (EMT) represents a change in the cellular phenotype, which ultimately leads to the fibrosis encountered in RPE, a characteristic of AMD. Many of the pathways triggering EMT are promoted by OS. The possible interconnections between these two signalling routes are discussed here. From a broader perspective, the control of NFE2L2 and EMT as ways of preventing OS-derived cellular damage could be potentially valuable in the therapy of AMD.",
+    "doi_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6888570/",
+    "title": "The Regulation of NFE2L2 (NRF2) Signalling and Epithelial-to-Mesenchymal Transition in Age-Related Macular Degeneration Pathology.",
+    "references": null
+  },
+  {
+    "authors": [
+      "Braimah IZ",
+      "Kenu E",
+      "Amissah-Arthur KN",
+      "Akafo S",
+      "Kwarteng KO",
+      "Amoaku WM"
+    ],
+    "publication": "PLoS One. 2019 Oct 24;14(10):e0223944. doi: 10.1371/journal.pone.0223944. eCollection 2019.",
+    "topic": "Macular Degeneration",
+    "abstract": "Abstract\nAIM:\nTo evaluate the safety of 1.25mg and 2mg intravitreal ziv-aflibercept (IVZ) in Ghanaian eyes with choroido-retinal vascular diseases.\nDESIGN:\nProspective, randomised, double blind, interventional study.\nMETHODS:\nTwenty patients with centre involving macular oedema in diabetic retinopathy, retinal vein occlusion, and neovascular age-related macular degeneration were assigned to 2 groups receiving 3 doses of 1.25mg/0.05ml (group 1) and 2mg/0.08ml IVZ (Group 2) at 4 weekly intervals. Safety data was collected after 30 minutes, 1 and 7 days, and 4, 8 and 12 weeks after injection. Changes in continuous variables were compared using paired t-test and categorical variables were compared using chi-square test of proportions. Repeated-Measures ANOVA with nesting test was used to compare variations in continuous variables by IVZ dose over time. Primary outcome measures were ocular and systemic adverse events at 4 weeks.\nRESULTS:\nEleven females and nine males, with mean age of 63.2± 7.3 years were included. Ocular adverse events included subconjunctival haemorrhage in 1 eye, intraocular pressure (IOP) >21mmHg at 30 minutes in 6 eyes and mild pain in 3 eyes at 1-day. There was no significant difference in IOP rise between the 2 groups at 30 minutes (p = 0.21). No other ocular or systemic adverse events were observed. There was significant improvement in the best corrected visual acuity (LogMAR) from 0.95±0.6 to 0.6±0.4 (p<0.01) and 0.47±0.3 (p<0.01), reduction in central subfield foveal thickness from 405.9±140 um at baseline to 255.6±75 um (p<0.01) and 238±88 um (p<0.01) at 4 and 12 weeks respectively, although no difference was observed between the 2 groups (p = 0.34).\nCONCLUSION:\nIVZ at 1.25mg and 2mg had similar safety profiles, and did not have any major unexpected adverse events. Further studies with larger cohorts are required to confirm efficacy.",
+    "doi_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6812750/",
+    "title": "Safety of intravitreal ziv-aflibercept in choroido-retinal vascular diseases: A randomised double-blind intervention study.",
+    "references": null
+  }
+]
