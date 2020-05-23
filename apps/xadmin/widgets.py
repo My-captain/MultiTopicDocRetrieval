@@ -72,7 +72,7 @@ class AdminSplitDateTime(forms.SplitDateTimeWidget):
         forms.MultiWidget.__init__(self, widgets, attrs)
 
     def render(self, name, value, attrs=None):
-        input_html = [ht for ht in super(AdminSplitDateTime, self).render(name, value, attrs).split('/><') if ht != '']
+        input_html = [ht for ht in super(AdminSplitDateTime, self).render(name, value, attrs).replace("\r", "").replace("\n", "").split('/><') if ht != '']
         if (len(input_html) > 1):
             input_html[0] = input_html[0] + "/>"
             input_html[1] = "<" + input_html[1]

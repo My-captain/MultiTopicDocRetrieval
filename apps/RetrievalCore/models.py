@@ -79,7 +79,7 @@ class UserProfile(AbstractUser):
         :return: List<P_i>
         """
         P_vectors = [self.P_vector_female, self.P_vector_male, self.P_vector_older]
-        D = json.loads(P_vectors[flag])
+        P = json.loads(P_vectors[flag])
         return P
 
     def __str__(self):
