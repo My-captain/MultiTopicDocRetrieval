@@ -18,4 +18,6 @@ import xadmin
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
+    re_path(r'doc_browse/', include('RetrievalCore.urls', namespace='RetrievalCore')),
+    re_path(r'user/', include('RetrievalCore.urls', namespace='User'))
 ]

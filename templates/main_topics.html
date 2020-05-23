@@ -10,7 +10,7 @@
 <body>
 
 <ul class="main-topic-container">
-    <li class="doc_list_card">
+    <li class="doc_list_card" onclick="">
         <div class="topic-item">Female Reproductive System</div>
     </li>
     <li class="doc_list_card">
@@ -22,5 +22,10 @@
 </ul>
 
 <script type="text/javascript" src="../static/js/frame/bootstrap.js"></script>
+<script type="text/javascript">
+    function request_topic(topic_code) {
+        window.location = `/topic_url/${topic_code}`;
+    }
+</script>
 </body>
 </html>
