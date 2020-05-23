@@ -43,6 +43,9 @@ INSTALLED_APPS = [
 
     'Prepare',
     'RetrievalCore',
+
+    'xadmin',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +78,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MultiTopicDocRetrieval.wsgi.application'
 
+AUTH_USER_MODEL = 'RetrievalCore.UserProfile'
+
+pymysql.install_as_MySQLdb()
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'DocRetrieval',
@@ -103,10 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 

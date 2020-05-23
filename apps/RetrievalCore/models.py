@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from datetime import datetime
 import json
+from django.utils import timezone
 
 
 class Document(models.Model):
@@ -14,6 +16,7 @@ class Document(models.Model):
     classification = models.IntegerField(verbose_name="所属类别", default=-1, null=True, blank=True)
     feature_vector = models.TextField(verbose_name="特征向量", null=True, blank=True)
     flag = models.IntegerField(verbose_name="数据库标志")
+
     class Meta:
         verbose_name = "文献"
         verbose_name_plural = verbose_name

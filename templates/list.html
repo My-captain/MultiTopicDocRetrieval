@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartDocRetrieval</title>
+    <link rel="stylesheet" href="/static/css/frame/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/list.css">
+</head>
+<body>
+
+<button type="button" class="btn btn-primary preference-customize-btn" onclick="window.open('{% url 'User:user_preference' %}{{ user_id }}', 'self')">Preference Custom</button>
+<button type="button" class="btn btn-info preference-record-btn" onclick="window.open('{% url 'User:record_preference' user_id=user_id %}', 'self')">Exit System</button>
+
+<ul>
+    {% for document in documents %}
+    <li class="doc_list_card">
+        <h5 class="doc_title" onclick="window.open('{% url 'RetrievalCore:document_detail' document_id=document.id session_id=session.id %}', 'self')">{{ document.title }}</h5>
+        <ul class="author_list">
+            {% for author in document.get_authors %}
+            <li class="author_item">{{ author }},</li>
+            {% endfor %}
+        </ul>
+        <div class="doc_profile">{{ document.publication }}</div>
+        <div class="doc_subtract">{{ document.abstract }}</div>
+    </li>
+    {% endfor %}
+</ul>
+{% csrf_token %}
+<div class="list-bottom" session-id="{{ session.id }}">
+    <div class="btn-danger exit-session-button" onclick="exit_session()">Exit Session</div>
+</div>
+
+<script type="text/javascript" src="/static/js/frame/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/frame/bootstrap.js"></script>
+<script type="text/javascript">
+    function exit_session() {
+        let user_relevance = localStorage.getItem("session_relevance");
+        user_relevance = JSON.parse(user_relevance);
+        let session_id = $(".list-bottom")[0].getAttribute("session-id");
+        $.ajax({
+            url: "{% url 'RetrievalCore:document_list' %}",
+            type: "post",
+            dataType: "json",
+            data: {
+                'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']")[0].getAttribute("value"),
+                "session_relevance": JSON.stringify(user_relevance),
+                "session_id": parseInt(session_id),
+                "user_id": "{{ user_id }}"
+            },
+            async: false,
+            success: function (result) {
+                window.location = '{% url 'User:preference_assess' %}{{ session.id }}/';
+            }
+        });
+    }
+</script>
+</body>
+</html>

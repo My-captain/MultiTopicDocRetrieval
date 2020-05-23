@@ -1,0 +1,113 @@
+body{
+    color: #333;
+    font-family: Merriweather Sans,sans-serif;
+}
+.main-content{
+    width: 880px;
+    margin: 0 auto;
+}
+.border-bottom{
+    border-width: 0;
+    border-style: solid;
+    border-color: #f0f0f0;
+    margin-bottom: 15px;
+}
+.detail-title{
+    font-weight: 600;
+    font-size: 1.75rem;
+    line-height: 35px;
+    margin: 0;
+}
+.detail-author-list{
+    height: auto;
+    margin: 0;
+    color: #757575;
+    font-size: .875rem;
+    list-style: none;
+    padding: 0;
+    line-height: 1.4;
+}
+.detail-author-item{
+    line-height: 2rem;
+    position: relative;
+    display: inline-block;
+    text-decoration: underline;
+}
+.detail-label{
+    font-weight: 600;
+    line-height: 2rem;
+    color: #000;
+    display: inline-block;
+    font-size: .875rem;
+    margin-bottom: 0;
+    margin-right: 6px;
+    float: none;
+}
+.detail-dot-separator{
+    box-sizing: border-box;
+    color: #757575;
+    content: '·';
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: .875rem;
+}
+.detail-publication{
+    color: #63666a;
+}
+.detail-doc-url{}
+.abstract-container{}
+.detail-block-title{
+    font-size: 1.0625rem;
+    line-height: 34px;
+    font-weight: 300;
+    background-color: #fafafa;
+    padding: 14px 0;
+}
+.detail-section-label{
+    background-color: #00509e;
+    content: '';
+    width: 8px;
+    height: 18px;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    margin: 0;
+    font-style: italic;
+    line-height: 1.125rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+    position: relative;
+    padding-left: 8px;
+}
+.abstract-section{
+    background-color: #fafafa;
+    font-size: 17px;
+    line-height: 34px;
+    font-weight: 600;
+    padding: 0 30px 10px 30px;
+    color: #333;
+    margin-bottom: 20px;
+}
+.reference-container{
+    overflow: hidden;
+}
+.reference-list{
+    padding: 30px;
+}
+.reference-item{
+    font-weight: 600;
+    text-align: left;
+    content: counter(item) ".";
+    padding-right: 3px;
+    float: left;
+    counter-increment: item;
+    margin-top: 8px;
+    background-image: linear-gradient(to right,#e0e0e0 30%,rgba(255,255,255,0) 0);
+    background-position: bottom;
+    background-size: 7px 1px;
+    background-repeat: repeat-x;
+    padding-bottom: 16px;
+}
+.reference-note{
+    text-align: left;
+}
