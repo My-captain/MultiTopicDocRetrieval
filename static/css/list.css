@@ -1,0 +1,72 @@
+.doc_list_card {
+    display: block;
+    margin: auto;
+    width: 800px !important;
+    margin-bottom: 21px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+.doc_list_card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.doc_title {
+    font-size: 18px;
+    font-family: Merriweather, serif;
+    line-height: 1.4;
+    word-wrap: break-word;
+    font-weight: 600;
+    color: #0077c2;
+    cursor: pointer;
+}
+
+.author_list {
+    list-style: none;
+    /* display: block; */
+    overflow: hidden;
+    height: auto;
+    margin: 0 0 10px;
+    font-size: .875rem;
+    font-family: Merriweather Sans, sans-serif;
+    /* float: left; */
+    padding: 0;
+}
+
+.author_item {
+    float: left;
+    margin-right: 6px;
+    color: #757575;
+    display: inline-block;
+    text-decoration: underline;
+    font-family: Merriweather Sans, sans-serif;
+    line-height: 2rem;
+    font-size: .875rem;
+}
+
+.doc_profile {
+    color: #757575;
+    margin: 10px 0;
+    box-sizing: border-box;
+    font-size: .875rem;
+    word-break: break-word;
+    list-style: none;
+    font-family: Merriweather Sans, sans-serif;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.doc_subtract {
+    height: auto;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    overflow: hidden;
+    font-size: .875rem;
+    word-break: break-word;
+    list-style: none;
+    color: #333;
+    font-family: Merriweather Sans, sans-serif;
+    line-height: 1.4;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ document.title }}</title>
+    <link rel="stylesheet" href="/static/css/frame/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/frame/bootstrap-slider.css">
+    <link rel="stylesheet" href="/static/css/detail.css">
+</head>
+<body>
+
+<button class="btn btn-danger back-btn" onclick="window.close()">Back</button>
+
+<main class="main-content">
+    <div class="border-bottom">
+        <h1 class="detail-title" document-id="{{ document.id }}" document-classification="{{ document.classification }}">{{ document.title }}</h1>
+    </div>
+    <div class="border-bottom">
+        <ul class="detail-author-list">
+            <li class="detail-label">Authors:</li>
+            {% for author in document.get_authors %}
+            <li class="detail-author-item">{{ author }},</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="border-bottom">
+        <span class="detail-label">Publication:</span>
+        <span class="detail-dot-separator">
+            <span class="detail-publication">{{ document.publication }}</span>
+        </span>
+        <span class="detail-dot-separator">
+            <span class="detail-doc-url">{{ document.doi_url }}</span>
+        </span>
+    </div>
+
+    <div class="abstract-container">
+        <div class="detail-block-title">
+            <h2 class="detail-section-label">
+                Abstract
+            </h2>
+        </div>
+        <div class="abstract-section">
+            <p>{{ document.abstract }}</p>
+        </div>
+    </div>
+    <div class="reference-container">
+        <div class="detail-block-title">
+            <h2 class="detail-section-label">
+                References
+            </h2>
+        </div>
+        <ol class="reference-list">
+            {% for reference in document.get_references %}
+            <li class="reference-item">
+                <span class="reference-note">{{ reference }}</span>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+</main>
+<div class="detail-bottom-container">
+    <div class="detail-bottom">
+        <label for="user_relevance" class="relevance-label">Relevance-Feedback:(0-1)</label>
+        <input id="user_relevance" data-slider-id='user-relevance-slider' type="text" data-slider-min="0"
+                       data-slider-max="1" data-slider-step="0.01" data-slider-value="0"/>
+        <span class="preference-label">Interest:
+            <span id="user-relevance-label" class="classification" style="width: 48px;display: inline-block;">0</span>
+        </span>
+        {% csrf_token %}
+        <button class="btn btn-primary detail-relevance-btn" type="button" onclick="submit_relevance()">Feedback My Interest</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/js/frame/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/frame/bootstrap.js"></script>
+<script type="text/javascript" src="/static/js/frame/bootstrap-slider.js"></script>
+<script type="text/javascript">
+    new Slider("#user_relevance").on("slide", function (event) {
+        $("#user-relevance-label").text(event.value);
+    });
+</script>
+<script type="text/javascript">
+    function submit_relevance() {
+        let user_relevance = parseFloat($('#user-relevance-label').text());
+        let title = $('.detail-title')[0];
+        let document_id = parseFloat(title.getAttribute("document-id"));
+        let document_classification = parseInt(title.getAttribute("document-classification"));
+
+        let session_relevance = localStorage.getItem("session_relevance");
+        if (session_relevance == null)
+            session_relevance = new Map();
+        else
+            session_relevance = JSON.parse(session_relevance);
+        session_relevance[document_id] = {classification: document_classification, relevance: user_relevance};
+        localStorage.setItem("session_relevance", JSON.stringify(session_relevance));
+    }
+</script>
+</body>
+</html>

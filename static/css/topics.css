@@ -1,0 +1,10 @@
+.main-topic-container{
+    overflow: auto;
+    width: 860px;
+    margin: 80px auto auto;
+}
+.topic-item{
+    height: 60px;
+    margin-bottom: 80px;
+}
+

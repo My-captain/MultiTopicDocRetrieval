@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartDocRetrieval</title>
+    <link rel="stylesheet" href="/static/css/frame/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/list.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/frame/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/frame/font-awesome.css">
+</head>
+<body>
+
+<ul session-id="{{ session.id }}">
+    {% for document in documents %}
+    <li class="doc_list_card">
+        <div class=" checkbox checkbox-primary">
+            <input id="checkbox{{ document.id }}" class="custom-checkbox custom-control styled document-checkbox" type="checkbox" document-id="{{ document.id }}">
+            <label for="checkbox{{ document.id }}">
+                Relevant Result
+            </label>
+        </div>
+        <h5 class="doc_title" onclick="window.open('{% url 'RetrievalCore:document_detail' document_id=document.id session_id=session.id %}', 'self')">{{ document.title }}</h5>
+        <ul class="author_list">
+            {% for author in document.get_authors %}
+            <li class="author_item">{{ author }},</li>
+            {% endfor %}
+        </ul>
+        <div class="doc_profile">{{ document.publication }}</div>
+        <div class="doc_subtract">{{ document.abstract }}</div>
+    </li>
+    {% endfor %}
+</ul>
+{% csrf_token %}
+<div class="list-bottom">
+    <div class="btn-secondary exit-session-button" onclick="exit_session()">Submit Preference</div>
+</div>
+
+<script type="text/javascript" src="/static/js/frame/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/frame/bootstrap.js"></script>
+<script type="text/javascript">
+    function exit_session() {
+        let user_preference = [];
+        document.querySelectorAll(".document-checkbox").forEach(box => {
+            user_preference.push({
+                "document_id": box.getAttribute("document-id"),
+                "user_relevant": box.checked
+            });
+        });
+        let session_id = document.querySelectorAll(`ul`)[0].getAttribute("session-id");
+        $.ajax({
+            url: "{% url 'User:preference_assess' %}",
+            type: "post",
+            dataType: "json",
+            data: {
+                'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']")[0].getAttribute("value"),
+                "user_preference": JSON.stringify(user_preference),
+                "session_id": parseInt(session_id)
+            },
+            async: false,
+            success: function (result) {
+                window.location = '{% url 'RetrievalCore:document_list' %}{{ user.id }}';
+            }
+        });
+    }
+</script>
+</body>
+</html>

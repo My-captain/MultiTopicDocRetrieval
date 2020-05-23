@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login-SmartDocRetrieval</title>
+    <link href="/static/css/frame/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+<form id="form1" class="well" style="width: 30em; margin: auto; margin-top: 150px;">
+    <h3>User Login</h3>
+    <div class=" input-group input-group-md">
+              <span class="input-group-addon" id="sizing-addon1">
+                  <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+              </span>
+        <input id="userName" type="text" class="form-control" placeholder="Account" aria-describedby="sizing-addon1"/>
+    </div>
+    <br/>
+    <div class="input-group input-group-md">
+              <span class="input-group-addon" id="sizing-addon1">
+                  <i class="glyphicon glyphicon-lock"></i>
+              </span>
+        <input type="password" id="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1"/>
+    </div>
+    <button type="button" class="btn btn-success btn-block" style="margin-top: 15px">Login</button>
+    {% csrf_token %}
+</form>
+<div>
+    <a class="btn btn-sm btn-white btn-block" style="text-align: center;" href="{% url 'User:user_register' %}">
+        <h6>Not have an account?Go Register</h6>
+    </a>
+</div>
+<script src="/static/js/frame/jquery.min.js"></script>
+<script src="/static/js/frame/bootstrap.js"></script>
+<script>
+    $("#form1").on("click", ".btn", function (e) {
+        let radioValue = $('input:radio[name="kind"]:checked').val();
+        let formData = $("#form1").serialize();
+        $.ajax({
+            url: "{% url 'User:user_login' %}",
+            type: "post",
+            async: false,
+            data: {
+                'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']")[0].getAttribute("value"),
+                "username": $("#userName").val(),
+                "password": $("#password").val()
+            },
+            dataType: "json",
+            success: function (result) {
+                if (result["success"] && result["redirect"] != null) {
+                    window.location = `${result["redirect"]}`
+                } else if (result["success"]) {
+                    window.location = `/doc_browse/list/${result["user_id"]}`;
+                } else {
+                    alert(result["msg"]);
+                }
+            }
+        });
+    })
+</script>
+</body>
+</html>

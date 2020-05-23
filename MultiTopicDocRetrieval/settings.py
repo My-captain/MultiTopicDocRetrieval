@@ -43,6 +43,9 @@ INSTALLED_APPS = [
 
     'Prepare',
     'RetrievalCore',
+
+    'xadmin',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -75,16 +78,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MultiTopicDocRetrieval.wsgi.application'
 
+AUTH_USER_MODEL = 'RetrievalCore.UserProfile'
+
+pymysql.install_as_MySQLdb()
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'DocRetrieval',
         'USER': 'root',
         'PASSWORD': 'Doc123456',
         'HOST': 'rm-bp1uk5g6qxw3mqpeevo.mysql.rds.aliyuncs.com',
-        'OPTIONS': {
-            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
-        }
+        # 'OPTIONS': {
+        #     "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+        # }
     }
 }
 
@@ -103,10 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -127,3 +133,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     # os.path.join(BASE_DIR, "/static/css/"),
 )
+
+
+Superuser = {
+    "account": "NJUST",
+    "password": "admin1234"
+}

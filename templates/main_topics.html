@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/frame/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/list.css">
+    <link rel="stylesheet" href="../static/css/topics.css">
+</head>
+<body>
+
+<ul class="main-topic-container">
+    <li class="doc_list_card" onclick="">
+        <div class="topic-item">Female Reproductive System</div>
+    </li>
+    <li class="doc_list_card">
+        <div class="topic-item">Male Reproductive System</div>
+    </li>
+    <li class="doc_list_card">
+        <div class="topic-item">Older Adults</div>
+    </li>
+</ul>
+
+<script type="text/javascript" src="../static/js/frame/bootstrap.js"></script>
+<script type="text/javascript">
+    function request_topic(topic_code) {
+        window.location = `/topic_url/${topic_code}`;
+    }
+</script>
+</body>
+</html>

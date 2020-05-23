@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Preference-Submit</title>
+    <link rel="stylesheet" href="/static/css/frame/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/frame/bootstrap-slider.css">
+    <link rel="stylesheet" href="/static/css/list.css">
+    <link rel="stylesheet" href="/static/css/preference_customize.css">
+</head>
+<body>
+
+<ul class="category-list">
+    {% for category in classification %}
+        <li class="category-item border-bottom">
+            <label for="category-{{ category.category_code }}"
+                   class="category-label">{{ category.category_name }}</label>
+            <input id="category-{{ category.category_code }}"
+                   data-slider-id='category-slider-{{ category.category_code }}' type="text" data-slider-min="0"
+                   data-slider-max="1" data-slider-step="0.01" data-slider-value="0"/>
+            <span class="preference-label">Interest:
+                <span id="category-label-{{ category.category_code }}" class="classification">0</span>
+            </span>
+        </li>
+    {% endfor %}
+</ul>
+<div class="btn-container">
+    <div class="btn-info submit-btn" onclick="submit_preference()">Submit</div>
+</div>
+{% csrf_token %}
+<script type="text/javascript" src="/static/js/frame/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/frame/bootstrap.js"></script>
+<script type="text/javascript" src="/static/js/frame/bootstrap-slider.js"></script>
+<script type="text/javascript">
+    {% for category in classification %}
+        new Slider("#category-{{ category.category_code }}").on("slide", function (event) {
+            $("#category-label-{{ category.category_code }}").text(event.value);
+        });
+    {% endfor %}
+</script>
+<script type="text/javascript">
+    function submit_preference() {
+        let user_preference = [];
+        document.querySelectorAll(".classification").forEach(input_box => {
+            try {
+                let prefer_value = parseFloat($(input_box).text());
+                if (isNaN(prefer_value)) {
+                    user_preference.push(0);
+                } else {
+                    user_preference.push(prefer_value);
+                }
+            } catch (e) {
+                user_preference.push(0);
+            }
+        });
+        $.ajax({
+            url: "{% url 'User:record_preference' user_id=user.id %}",
+            type: "post",
+            dataType: "json",
+            data: {
+                'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']")[0].getAttribute("value"),
+                "user_id": {{user.id}},
+                "user_preference": JSON.stringify(user_preference)
+            },
+            async: false,
+            success: function (result) {
+                if (result["success"]) {
+                    // window.location = `/doc_browse/list/${result["user_id"]}`;
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
