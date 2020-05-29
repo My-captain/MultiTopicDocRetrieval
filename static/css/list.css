@@ -12,7 +12,6 @@
 .doc_list_card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-
 .doc_title {
     font-size: 18px;
     font-family: Merriweather, serif;
@@ -59,6 +58,10 @@
 }
 
 .doc_subtract {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
     height: auto;
     margin-bottom: 1rem;
     margin-top: 1rem;
