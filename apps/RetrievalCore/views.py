@@ -8,8 +8,8 @@ from datetime import datetime
 import apps.RetrievalCore.CommonTools as tool
 from .models import Document, Session, UserProfile, DVectorRecord
 
-CLASS_NUM = 5
-SESSION_NUM = 300
+CLASS_NUM = [5, 5, 5]
+SESSION_NUM = [300, 150, 300]
 ETA = 0.5
 classification = [[{"category_name": 'pregnancy and ert', "category_code": 0},
                    {"category_name": 'dysmenorrhea and menstruation', "category_code": 1},
@@ -45,6 +45,7 @@ class DocumentListView(View):
         :return:
         """
         user_id = request.path.split("list")[1].replace("/", "")
+        flag = int('')  # TODO 从request中取出数据库标志
         if len(user_id) < 1:
             return render(request, "login.html")
         user_id = int(user_id)
@@ -54,8 +55,11 @@ class DocumentListView(View):
         user = user[0]
         user_sessions = Session.objects.filter(user=user, D_vector=None, P_vector=None)
         if len(user_sessions) > 0:
-            user_session = user_sessions[0]
-            documents = user_session.documents.all()
+            for session in user_sessions:
+                if session.documents.first().flag == flag:
+                    user_session = session
+                    documents = user_session.documents.all()
+                    break
             new = tool.sort_docs_by_dp(documents, user.get_D_vector(), user.get_P_vector())
             for i in range(len(new)):
                 print(new[i].id, documents[i].id)
@@ -66,7 +70,7 @@ class DocumentListView(View):
             })
         else:
             user_sessions = Session.objects.filter(user=user)
-            new_documents = Document.objects.filter(~Q(session__documents__session__in=list(user_sessions)))[:20]
+            new_documents = Document.objects.filter(~Q(session__documents__session__in=list(user_sessions)), flag=flag)[:20]
             new_session = Session.objects.create(user=user, D_vector=None, P_vector=None, precision=None)
             new_session.documents.set(list(new_documents))
             new_session.save()
@@ -96,6 +100,8 @@ class DocumentListView(View):
         }
         user_relevance = json.loads(request.POST.get("session_relevance"))
         user_id = request.POST.get("user_id")
+        flag = int(request.POST.get("flag"))
+        json_response['flag'] = flag
         if len(user_id) < 1:
             json_response["redirect"] = "/user/login/"
             return JsonResponse(json_response, json_dumps_params={"ensure_ascii": False})
@@ -107,8 +113,11 @@ class DocumentListView(View):
         user = user[0]
         user_sessions = Session.objects.filter(user=user, D_vector=None, P_vector=None)
         if len(user_sessions) > 0:
-            user_session = user_sessions[0]
-            d = user.get_D_vector()
+            for session in user_sessions:
+                if session.documents.first().flag == flag:
+                    user_session = session
+                    break
+            d = user.get_D_vector(flag)
             user_d = [0 for i in range(len(d))]
             num_d = [0 for i in range(len(d))]
             if user_relevance:
@@ -122,8 +131,15 @@ class DocumentListView(View):
             new_p = json.dumps(tool.update_p_value(user.get_P_vector(), new_d, ETA))
             user_session.D_vector = new_d
             user_session.P_vector = new_p
-            user.D_vector = new_d
-            user.P_vector = new_p
+            if flag == 0:
+                user.D_vector_female = new_d
+                user.P_vector_female = new_p
+            elif flag == 1:
+                user.D_vector_male = new_d
+                user.P_vector_male = new_p
+            else:
+                user.D_vector_older = new_d
+                user.P_vector_older = new_p
             user_session.save()
             user.save()
             # session_documents = Document.objects.filter(session__documents__session__in=[user_session])
@@ -134,7 +150,6 @@ class DocumentListView(View):
 class DocumentDetailView(View):
     def get(self, request, document_id, session_id):
         """
-        未实现
         验证用户是否登录
             已登录:
                 1.根据document_id从Document中取出该文献详细信息
@@ -152,23 +167,6 @@ class DocumentDetailView(View):
             "document": document,
             "session": session
         })
-
-    def post(self, request, document_id, session_id):
-        """
-        未实现(用户在文献详情页打分后将打分分值传至后端)
-        验证用户是否登录
-            已登录:
-                1.根据document_id从Document中取出该文献详细信息
-                2.返回页面（需要包含 Document实体、用户实体、Session实体）
-            未登录:
-                返回登录页面
-        :param request:
-        :param document_id:
-        :param session_id:
-        :return:
-        """
-        # 用户打分取值方式request.POST.get("user_relevance"),类型为float
-        pass
 
 
 class UserLogin(View):
@@ -197,6 +195,8 @@ class UserLogin(View):
         }
         username = request.POST.get("username")
         password = request.POST.get("password")
+        flag = int(request.POST.get("flag"))
+        json_response['flag'] = flag
         if username is None or password is None:
             json_response["msg"] = "用户名或密码为空！"
             return JsonResponse(json_response, json_dumps_params={"ensure_ascii": False})
@@ -251,9 +251,15 @@ class UserRegister(View):
         new_user = UserProfile()
         new_user.username = username
         new_user.password = password
-        init_d, init_p = tool.initial_d_p_vector(CLASS_NUM)
-        new_user.D_vector = json.dumps(init_d)
-        new_user.P_vector = json.dumps(init_p)
+        init_d, init_p = tool.initial_d_p_vector(CLASS_NUM[0])
+        new_user.D_vector_female = json.dumps(init_d)
+        new_user.P_vector_female = json.dumps(init_p)
+        init_d, init_p = tool.initial_d_p_vector(CLASS_NUM[1])
+        new_user.D_vector_male = json.dumps(init_d)
+        new_user.P_vector_male = json.dumps(init_p)
+        init_d, init_p = tool.initial_d_p_vector(CLASS_NUM[2])
+        new_user.D_vector_older = json.dumps(init_d)
+        new_user.P_vector_older = json.dumps(init_p)
         new_user.save()
         json_response["success"] = True
         return JsonResponse(json_response, json_dumps_params={"ensure_ascii": False})
@@ -262,6 +268,7 @@ class UserRegister(View):
 class UserPreference(View):
     def get(self, request):
         user_id = request.path.split("preference_customize")[1].replace("/", "")
+        flag = int('')  # TODO 从request中取出数据库标志
         if len(user_id) < 1:
             return render(request, "login.html")
         user_id = int(user_id)
@@ -269,20 +276,19 @@ class UserPreference(View):
         if len(user) < 1:
             return render(request, "login.html")
         user = user[0]
-        D_vector = json.loads(user.D_vector)
-        for category in range(len(classification)):
-            D_value = D_vector[category]
-            category = classification[category]
-            category["interest_value"] = D_value
+        D_vector = json.loads(user.get_D_vector(flag))
+        for i in range(len(classification[flag])):
+            classification[flag][i]["interest_value"] = D_vector[i]
         return render(request, "preference_customize.html", {
             "user": user,
-            "classification": classification
+            "classification": classification[flag]
         })
 
     def post(self, request):
         user_preference = request.POST.get("user_preference")
         user_preference = json.loads(user_preference)
         user_id = request.POST.get("user_id")
+        flag = int(request.POST.get("flag"))
         if len(user_id) < 1:
             return render(request, "login.html")
         user_id = int(user_id)
@@ -291,8 +297,15 @@ class UserPreference(View):
             return render(request, "login.html")
         user = user[0]
         if user_preference is not None and sum(user_preference) > 0:
-            user.D_vector = json.dumps(user_preference)
-            user.P_vector = json.dumps(tool.update_p_value(user.get_P_vector(), user_preference, 0.5))
+            if flag == 0:
+                user.D_vector_female = json.dumps(user_preference)
+                user.P_vector_female = json.dumps(tool.update_p_value(user.get_P_vector(), user_preference, 0.5))
+            elif flag == 1:
+                user.D_vector_male = json.dumps(user_preference)
+                user.P_vector_male = json.dumps(tool.update_p_value(user.get_P_vector(), user_preference, 0.5))
+            else:
+                user.D_vector_older = json.dumps(user_preference)
+                user.P_vector_older = json.dumps(tool.update_p_value(user.get_P_vector(), user_preference, 0.5))
             user.save()
         return JsonResponse({"success": True, "user_id": user_id}, json_dumps_params={"ensure_ascii": False})
 
@@ -300,6 +313,7 @@ class UserPreference(View):
 class PreferenceAssess(View):
     def get(self, request):
         session_id = request.path.split("assess")[1].replace("/", "")
+        flag = int('')  # TODO 从request中取出数据库标志
         if session_id is None or len(session_id) < 1:
             return render(request, "login.html")
         session = Session.objects.filter(id=session_id)
@@ -308,7 +322,7 @@ class PreferenceAssess(View):
         session = session[0]
         session_documents = session.documents.all()
         user = session.user
-        new = tool.sort_docs_by_dp(session_documents, user.get_D_vector(), user.get_P_vector())
+        new = tool.sort_docs_by_dp(session_documents, user.get_D_vector(flag), user.get_P_vector(flag))
         return render(request, "preference_assess.html", {
             "session": session,
             "documents": new,
@@ -323,6 +337,7 @@ class PreferenceAssess(View):
             "redirect": None
         }
         session_id = request.POST.get("session_id")
+        flag = int(request.POST.get("flag"))
         session = Session.objects.filter(id=session_id).all()[0]
         user_preference = request.POST.get("user_preference")
         session.precision, session.default_precision = tool.calc_precision(json.loads(user_preference), session.documents.all())
@@ -333,10 +348,11 @@ class PreferenceAssess(View):
 
 class RecordPreference(View):
     def get(self, request, user_id):
+        flag = int('')  # TODO 从request中取出数据库标志
         user = UserProfile.objects.filter(id=user_id)[0]
         return render(request, "record_preference.html", {
             "user": user,
-            "classification": classification
+            "classification": classification[flag]
         })
 
     def post(self, request, user_id):
@@ -348,9 +364,11 @@ class RecordPreference(View):
         }
         user = UserProfile.objects.filter(id=user_id)[0]
         user_preference = request.POST.get("user_preference")
+        flag = int(request.POST.get("flag"))
         D_record = DVectorRecord.objects.create(user=user)
         D_record.user_D_vector = user_preference
         D_record.sys_D_vector = user.D_vector
         D_record.submit_time = datetime.now()
+        D_record.flag = flag
         D_record.save()
         return JsonResponse(json_response, json_dumps_params={"ensure_ascii": False})
