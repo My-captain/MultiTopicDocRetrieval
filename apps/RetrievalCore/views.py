@@ -6,30 +6,15 @@ from django.db.models import Q
 import json
 from datetime import datetime
 import apps.RetrievalCore.CommonTools as tool
-from .models import Document, Session, UserProfile, DVectorRecord
+from RetrievalCore.models import Document, Session, UserProfile, DVectorRecord
+from MultiTopicDocRetrieval.settings import CLASS_NUM, SESSION_NUM, ETA, classification
 
-CLASS_NUM = [5, 5, 5]
-SESSION_NUM = [300, 150, 300]
-ETA = 0.5
-classification = [[{"category_name": 'pregnancy and ert', "category_code": 0},
-                   {"category_name": 'dysmenorrhea and menstruation', "category_code": 1},
-                   {"category_name": 'sterilization and delivery', "category_code": 2},
-                   {"category_name": 'preterm labor and ectopic pregnancy', "category_code": 3},
-                   {"category_name": 'menopause and premature menopause', "category_code": 4}],
-                  [{"category_name": 'std and sex', "category_code": 0},
-                   {"category_name": 'prostate cancer and sex', "category_code": 1},
-                   {"category_name": 'infertility and fertility', "category_code": 2},
-                   {"category_name": 'vasectomy and family planning', "category_code": 3},
-                   {"category_name": 'semen and infertility', "category_code": 4}],
-                  [{"category_name": 'stroke and cataract', "category_code": 0},
-                   {"category_name": 'mci and dementia', "category_code": 1},
-                   {"category_name": 'tremor and essential tremor', "category_code": 2},
-                   {"category_name": 'menopause and premature menopause', "category_code": 3},
-                   {"category_name": 'prostate cancer and incontinence', "category_code": 4}]
-                  ]
 
 class DocumentListView(View):
-    def get(self, request):
+    """
+    文献列表视图
+    """
+    def get(self, request, user_id, flag):
         """
         验证用户是否登录
             已登录:
@@ -44,11 +29,12 @@ class DocumentListView(View):
         :param request:
         :return:
         """
-        user_id = request.path.split("list")[1].replace("/", "")
-        flag = int('')  # TODO 从request中取出数据库标志
+        flag = int(flag)
+        # user_id = request.path.split("list")[1].replace("/", "")
+        # flag = int('')  # TODO 从request中取出数据库标志
         if len(user_id) < 1:
             return render(request, "login.html")
-        user_id = int(user_id)
+        # user_id = int(user_id)
         user = UserProfile.objects.filter(id=user_id)
         if len(user) < 1:
             return render(request, "login.html")
@@ -60,13 +46,14 @@ class DocumentListView(View):
                     user_session = session
                     documents = user_session.documents.all()
                     break
-            new = tool.sort_docs_by_dp(documents, user.get_D_vector(), user.get_P_vector())
+            new = tool.sort_docs_by_dp(documents, user.get_D_vector(flag), user.get_P_vector(flag))
             for i in range(len(new)):
                 print(new[i].id, documents[i].id)
             return render(request, "list.html", {
                 "documents": documents,
                 "session": user_session,
-                "user_id": user_id
+                "user_id": user_id,
+                "flag": flag
             })
         else:
             user_sessions = Session.objects.filter(user=user)
@@ -78,7 +65,8 @@ class DocumentListView(View):
             return render(request, "list.html", {
                 "documents": new,
                 "session": new_session,
-                "user_id": user_id
+                "user_id": user_id,
+                "flag": flag
             })
 
     def post(self, request):
@@ -206,11 +194,14 @@ class UserLogin(View):
             return JsonResponse(json_response, json_dumps_params={"ensure_ascii": False})
         else:
             user = user[0]
-        if user.password == password:
+        if user.password == password or user.check_password(password):
             json_response["success"] = True
             json_response["user_id"] = user.id
-            if sum(user.get_D_vector()) == 0:
-                json_response["redirect"] = "/user/preference_customize/{0}/".format(user.id)
+            try:
+                if sum(user.get_D_vector(flag)) == 0:
+                    json_response["redirect"] = "/user/preference_customize/{0}/{1}/".format(user.id, flag)
+            except Exception as e:
+                json_response["redirect"] = "/user/preference_customize/{0}/{1}/".format(user.id, flag)
         else:
             json_response["msg"] = "密码错误"
         return JsonResponse(json_response, json_dumps_params={"ensure_ascii": False})
@@ -266,9 +257,10 @@ class UserRegister(View):
 
 
 class UserPreference(View):
-    def get(self, request):
-        user_id = request.path.split("preference_customize")[1].replace("/", "")
-        flag = int('')  # TODO 从request中取出数据库标志
+    def get(self, request, user_id, flag):
+        # user_id = request.path.split("preference_customize")[1].replace("/", "")
+        # flag = int('')  # TODO 从request中取出数据库标志
+        flag = int(flag)
         if len(user_id) < 1:
             return render(request, "login.html")
         user_id = int(user_id)
@@ -276,22 +268,21 @@ class UserPreference(View):
         if len(user) < 1:
             return render(request, "login.html")
         user = user[0]
-        D_vector = json.loads(user.get_D_vector(flag))
+        D_vector = user.get_D_vector(flag)
         for i in range(len(classification[flag])):
             classification[flag][i]["interest_value"] = D_vector[i]
         return render(request, "preference_customize.html", {
             "user": user,
-            "classification": classification[flag]
+            "classification": classification[flag],
+            "flag": flag
         })
 
-    def post(self, request):
+    def post(self, request, user_id, flag):
+        flag = int(flag)
         user_preference = request.POST.get("user_preference")
         user_preference = json.loads(user_preference)
-        user_id = request.POST.get("user_id")
-        flag = int(request.POST.get("flag"))
         if len(user_id) < 1:
             return render(request, "login.html")
-        user_id = int(user_id)
         user = UserProfile.objects.filter(id=user_id)
         if len(user) < 1:
             return render(request, "login.html")
@@ -299,13 +290,13 @@ class UserPreference(View):
         if user_preference is not None and sum(user_preference) > 0:
             if flag == 0:
                 user.D_vector_female = json.dumps(user_preference)
-                user.P_vector_female = json.dumps(tool.update_p_value(user.get_P_vector(), user_preference, 0.5))
+                user.P_vector_female = json.dumps(tool.update_p_value(user.get_P_vector(flag), user_preference, 0.5))
             elif flag == 1:
                 user.D_vector_male = json.dumps(user_preference)
-                user.P_vector_male = json.dumps(tool.update_p_value(user.get_P_vector(), user_preference, 0.5))
+                user.P_vector_male = json.dumps(tool.update_p_value(user.get_P_vector(flag), user_preference, 0.5))
             else:
                 user.D_vector_older = json.dumps(user_preference)
-                user.P_vector_older = json.dumps(tool.update_p_value(user.get_P_vector(), user_preference, 0.5))
+                user.P_vector_older = json.dumps(tool.update_p_value(user.get_P_vector(flag), user_preference, 0.5))
             user.save()
         return JsonResponse({"success": True, "user_id": user_id}, json_dumps_params={"ensure_ascii": False})
 

@@ -4,7 +4,25 @@
     margin: 80px auto auto;
 }
 .topic-item{
-    height: 60px;
-    margin-bottom: 80px;
+    /*height: 60px;*/
+    /*margin-bottom: 80px;*/
 }
-
+.topic-checkbox-container{
+    float: left;
+}
+.topic-checkbox{
+    float: left;
+    margin-right: 10px;
+}
+.italic-en-font{
+    font: italic 1.5em Georgia, serif;
+}
+.doc_list_card{
+    overflow: auto !important;
+    padding: 8px !important;
+    width: 100% !important;
+}
+.main-topic-container{
+    width: 600px !important;
+    padding: 10px !important;
+}
