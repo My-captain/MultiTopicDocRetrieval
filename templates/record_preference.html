@@ -54,7 +54,7 @@
             }
         });
         $.ajax({
-            url: "{% url 'User:record_preference' user_id=user.id flag=flag%}",
+            url: "{% url 'User:record_preference' user_id=user.id flag=flag %}",
             type: "post",
             dataType: "json",
             data: {
@@ -65,7 +65,7 @@
             async: false,
             success: function (result) {
                 if (result["success"]) {
-                    // window.location = `/doc_browse/list/${result["user_id"]}`;
+                    window.location = `/doc_browse/list/${result["user_id"]}/{{ flag }}`;
                 }
             }
         });

@@ -25,6 +25,9 @@ class SessionAdmin(object):
     search_fields = ["user", "documents", "D_vector", "P_vector", "precision", "default_precision"]
     list_filter = ["user", "documents", "D_vector", "P_vector", "precision", "default_precision"]
     show_detail_fields = ["user", "documents", "D_vector", "P_vector", "precision", "default_precision"]
+    data_charts = {
+
+    }
 
 
 class DVectorRecordAdmin(object):

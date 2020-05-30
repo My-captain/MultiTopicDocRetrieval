@@ -367,6 +367,7 @@ class RecordPreference(View):
         }
         user = UserProfile.objects.filter(id=user_id)[0]
         user_preference = request.POST.get("user_preference")
+
         flag = int(flag)
         D_record = DVectorRecord.objects.create(user=user)
         D_record.user_D_vector = user_preference
