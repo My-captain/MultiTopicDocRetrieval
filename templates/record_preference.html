@@ -65,7 +65,8 @@
             async: false,
             success: function (result) {
                 if (result["success"]) {
-                    window.location = `/doc_browse/list/${result["user_id"]}/{{ flag }}`;
+                    alert("Submit Successfully.");
+                    window.location = `/doc_browse/topic_choose/{{ user.id }}/`;
                 }
             }
         });

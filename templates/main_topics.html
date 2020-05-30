@@ -2,29 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../static/css/frame/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/list.css">
-    <link rel="stylesheet" href="../static/css/topics.css">
+    <title>Other Topics</title>
+    <link href="/static/css/frame/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/css/list.css">
+    <link rel="stylesheet" href="/static/css/topics.css">
 </head>
 <body>
 
 <ul class="main-topic-container">
-    <li class="doc_list_card" onclick="">
-        <div class="topic-item">Female Reproductive System</div>
+    <li class="doc_list_card" onclick="card_click(`checkbox-Female`)">
+        <div class="topic-checkbox-container checkbox checkbox-primary">
+            <input id="checkbox-Female" group="topic-choice" choice-id="0" class="custom-checkbox custom-control styled topic-checkbox" type="checkbox">
+            <label class="italic-en-font" for="checkbox-Female">Female Reproductive System</label>
+        </div>
+        <!--<div class="topic-item">Female Reproductive System</div>-->
     </li>
-    <li class="doc_list_card">
-        <div class="topic-item">Male Reproductive System</div>
+    <li class="doc_list_card" onclick="card_click(`checkbox-Male`)">
+        <div class="topic-checkbox-container checkbox checkbox-primary">
+            <input id="checkbox-Male" group="topic-choice" choice-id="1" class="custom-checkbox custom-control styled topic-checkbox" type="checkbox">
+            <label class="italic-en-font" for="checkbox-Male">Male Reproductive System</label>
+        </div>
+        <!--<div class="topic-item">Male Reproductive System</div>-->
     </li>
-    <li class="doc_list_card">
-        <div class="topic-item">Older Adults</div>
+    <li class="doc_list_card" onclick="card_click(`checkbox-Older`)">
+        <div class="topic-checkbox-container checkbox checkbox-primary">
+            <input id="checkbox-Older" group="topic-choice" choice-id="2" class="custom-checkbox custom-control styled topic-checkbox" type="checkbox">
+            <label class="italic-en-font" for="checkbox-Older">Older Adults</label>
+        </div>
+        <!--<div class="topic-item">Older Adults</div>-->
     </li>
 </ul>
 
-<script type="text/javascript" src="../static/js/frame/bootstrap.js"></script>
-<script type="text/javascript">
-    function request_topic(topic_code) {
-        window.location = `/topic_url/${topic_code}`;
+<div class="topic-btn-container">
+    <button class="doc-list-btn btn btn-primary" onclick="choose_other_topic()">Browse Doc</button>
+    <button class="exit-btn btn btn-danger" onclick="exit_sys()">Exit System</button>
+</div>
+
+<script src="/static/js/frame/jquery.min.js"></script>
+<script src="/static/js/frame/bootstrap.js"></script>
+<script>
+    /**
+     * 控制单选，卡片选择
+     * @param card_item
+     */
+    function card_click(card_item){
+        try {
+            let _checked = document.querySelector(`#${card_item}`).checked;
+            let group_tag = document.querySelector(`#${card_item}`).getAttribute("group");
+            if (group_tag != null)
+                document.querySelectorAll(`[group='${group_tag}']`).forEach(check_box => check_box.checked = false);
+            document.querySelector(`#${card_item}`).checked = !_checked;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function get_topic_choice(){
+        let user_choice = document.querySelector(`.topic-checkbox:checked[type='checkbox']`);
+        if (user_choice == null)
+            alert("Please choose a topic you`re interested in.")
+        else
+            return user_choice.getAttribute("choice-id");
+    }
+
+    function choose_other_topic() {
+        let choice_id = get_topic_choice();
+        if (choice_id == null)
+            return;
+        window.location = `/doc_browse/list/{{ user.id }}/${choice_id}/`;
+    }
+
+    function exit_sys() {
+        alert("Bye");
+        window.location.href = "about:blank";
+        window.close();
     }
 </script>
 </body>

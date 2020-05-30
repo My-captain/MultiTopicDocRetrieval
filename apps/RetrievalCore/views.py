@@ -94,7 +94,8 @@ class DocumentListView(View):
             "redirect": None
         }
         user_relevance = json.loads(request.POST.get("session_relevance"))
-        user_id = request.POST.get("user_id")
+        # user_id = request.POST.get("user_id")
+        # flag = int(request.POST.get("flag"))
         flag = int(flag)
         json_response['flag'] = flag
         if len(user_id) < 1:
@@ -338,7 +339,9 @@ class PreferenceAssess(View):
             "user_id": None,
             "redirect": None
         }
-
+        # session_id = request.POST.get("session_id")
+        # flag = int(request.POST.get("flag"))
+        flag = int(flag)
         session = Session.objects.filter(id=session_id).all()[0]
         user_preference = request.POST.get("user_preference")
         session.precision, session.default_precision = tool.calc_precision(json.loads(user_preference), session.documents.all())
@@ -358,8 +361,9 @@ class RecordPreference(View):
         })
 
     def post(self, request, user_id, flag):
+        flag = int(flag)
         json_response = {
-            "success": False,
+            "success": True,
             "msg": "",
             "user_id": None,
             "redirect": None,
@@ -367,8 +371,6 @@ class RecordPreference(View):
         }
         user = UserProfile.objects.filter(id=user_id)[0]
         user_preference = request.POST.get("user_preference")
-
-        flag = int(flag)
         D_record = DVectorRecord.objects.create(user=user)
         D_record.user_D_vector = user_preference
         D_record.sys_D_vector = user.get_D_vector(flag)
@@ -376,3 +378,21 @@ class RecordPreference(View):
         D_record.flag = flag
         D_record.save()
         return JsonResponse(json_response, json_dumps_params={"ensure_ascii": False})
+
+
+class TopicChooseView(View):
+    """
+    主题重新选择
+    """
+    def get(self, request, user_id):
+        user = UserProfile.objects.filter(id=user_id)
+        if len(user) < 1:
+            return render(request, "login.html")
+        user = user[0]
+        return render(request, "main_topics.html", {
+            "user": user
+        })
+
+    # def post(self, request, user_id):
+    #     flag =
+    #     pass

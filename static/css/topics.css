@@ -26,3 +26,14 @@
     width: 600px !important;
     padding: 10px !important;
 }
+.topic-btn-container{
+    width: 220px;
+    /* overflow: auto; */
+    margin: 0 auto;
+}
+.doc-list-btn{
+
+}
+.exit-btn{
+
+}
