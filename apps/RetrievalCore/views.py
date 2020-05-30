@@ -48,13 +48,16 @@ class DocumentListView(View):
                     documents = user_session.documents.all()
                     break
             if documents is None:
-                # TODO 此处documents可能为空，因为有可能是一个新的flag
-                pass
+                documents = Document.objects.filter(~Q(session__documents__session__in=list(user_sessions)),
+                                                        flag=flag)[:20]
+                user_session = Session.objects.create(user=user, D_vector=None, P_vector=None, precision=None)
+                user_session.documents.set(list(documents))
+                user_session.save()
             new = tool.sort_docs_by_dp(documents, user.get_D_vector(flag), user.get_P_vector(flag))
             for i in range(len(new)):
                 print(new[i].id, documents[i].id)
             return render(request, "list.html", {
-                "documents": documents,
+                "documents": new,
                 "session": user_session,
                 "user_id": user_id,
                 "flag": flag
@@ -91,8 +94,7 @@ class DocumentListView(View):
             "redirect": None
         }
         user_relevance = json.loads(request.POST.get("session_relevance"))
-        # user_id = request.POST.get("user_id")
-        # flag = int(request.POST.get("flag"))
+        user_id = request.POST.get("user_id")
         flag = int(flag)
         json_response['flag'] = flag
         if len(user_id) < 1:
@@ -120,8 +122,8 @@ class DocumentListView(View):
                 for k, v in enumerate(user_d):
                     if v > 0:
                         v /= num_d[k]
-            new_d = json.dumps(tool.update_d_value(d, user_d, SESSION_NUM))
-            new_p = json.dumps(tool.update_p_value(user.get_P_vector(), new_d, ETA))
+            new_d = json.dumps(tool.update_d_value(d, user_d, SESSION_NUM[flag]))
+            new_p = json.dumps(tool.update_p_value(user.get_P_vector(flag), new_d, ETA))
             user_session.D_vector = new_d
             user_session.P_vector = new_p
             if flag == 0:
@@ -303,7 +305,7 @@ class UserPreference(View):
                 user.D_vector_older = json.dumps(user_preference)
                 user.P_vector_older = json.dumps(tool.update_p_value(user.get_P_vector(flag), user_preference, 0.5))
             user.save()
-        return JsonResponse({"success": True, "user_id": user_id}, json_dumps_params={"ensure_ascii": False})
+        return JsonResponse({"success": True, "user_id": user_id, 'flag': flag}, json_dumps_params={"ensure_ascii": False})
 
 
 class PreferenceAssess(View):
@@ -312,7 +314,7 @@ class PreferenceAssess(View):
     """
     def get(self, request, session_id, flag):
         # session_id = request.path.split("assess")[1].replace("/", "")
-        # flag = int('')
+        flag = int(flag)
         if session_id is None or len(session_id) < 1:
             return render(request, "login.html")
         session = Session.objects.filter(id=session_id)
@@ -336,9 +338,7 @@ class PreferenceAssess(View):
             "user_id": None,
             "redirect": None
         }
-        # session_id = request.POST.get("session_id")
-        # flag = int(request.POST.get("flag"))
-        flag = int(flag)
+
         session = Session.objects.filter(id=session_id).all()[0]
         user_preference = request.POST.get("user_preference")
         session.precision, session.default_precision = tool.calc_precision(json.loads(user_preference), session.documents.all())
@@ -358,18 +358,20 @@ class RecordPreference(View):
         })
 
     def post(self, request, user_id, flag):
-        flag = int(flag)
         json_response = {
             "success": False,
             "msg": "",
             "user_id": None,
-            "redirect": None
+            "redirect": None,
+            "flag": flag
         }
         user = UserProfile.objects.filter(id=user_id)[0]
         user_preference = request.POST.get("user_preference")
+
+        flag = int(flag)
         D_record = DVectorRecord.objects.create(user=user)
         D_record.user_D_vector = user_preference
-        D_record.sys_D_vector = user.D_vector
+        D_record.sys_D_vector = user.get_D_vector(flag)
         D_record.submit_time = datetime.now()
         D_record.flag = flag
         D_record.save()
