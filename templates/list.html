@@ -9,7 +9,7 @@
 <body>
 
 <button type="button" class="btn btn-primary preference-customize-btn" onclick="window.open('{% url 'User:user_preference' user_id=user_id flag=flag %}', 'self')">Preference Custom</button>
-<button type="button" class="btn btn-info preference-record-btn" onclick="window.open('{% url 'User:record_preference' user_id=user_id %}', 'self')">Exit System</button>
+<button type="button" class="btn btn-info preference-record-btn" onclick="window.open('{% url 'User:record_preference' user_id=user_id flag=flag %}', 'self')">Exit System</button>
 
 <ul>
     {% for document in documents %}

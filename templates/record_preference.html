@@ -54,7 +54,7 @@
             }
         });
         $.ajax({
-            url: "{% url 'User:record_preference' user_id=user.id %}",
+            url: "{% url 'User:record_preference' user_id=user.id flag=flag%}",
             type: "post",
             dataType: "json",
             data: {
