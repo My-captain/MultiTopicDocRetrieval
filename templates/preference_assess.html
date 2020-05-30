@@ -48,7 +48,7 @@
         });
         let session_id = document.querySelectorAll(`ul`)[0].getAttribute("session-id");
         $.ajax({
-            url: "{% url 'User:preference_assess' %}",
+            url: "{% url 'User:preference_assess' session_id=session.id flag=flag %}",
             type: "post",
             dataType: "json",
             data: {
@@ -58,7 +58,7 @@
             },
             async: false,
             success: function (result) {
-                window.location = '{% url 'RetrievalCore:document_list' %}{{ user.id }}';
+                window.location = '{% url 'RetrievalCore:document_list' user_id=user.id flag=flag %}';
             }
         });
     }

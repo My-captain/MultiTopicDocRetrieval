@@ -31,7 +31,7 @@ class DocumentListView(View):
         """
         flag = int(flag)
         # user_id = request.path.split("list")[1].replace("/", "")
-        # flag = int('')  # TODO 从request中取出数据库标志
+        # flag = int('')
         if len(user_id) < 1:
             return render(request, "login.html")
         # user_id = int(user_id)
@@ -40,12 +40,16 @@ class DocumentListView(View):
             return render(request, "login.html")
         user = user[0]
         user_sessions = Session.objects.filter(user=user, D_vector=None, P_vector=None)
+        documents = None
         if len(user_sessions) > 0:
             for session in user_sessions:
                 if session.documents.first().flag == flag:
                     user_session = session
                     documents = user_session.documents.all()
                     break
+            if documents is None:
+                # TODO 此处documents可能为空，因为有可能是一个新的flag
+                pass
             new = tool.sort_docs_by_dp(documents, user.get_D_vector(flag), user.get_P_vector(flag))
             for i in range(len(new)):
                 print(new[i].id, documents[i].id)
@@ -259,7 +263,7 @@ class UserRegister(View):
 class UserPreference(View):
     def get(self, request, user_id, flag):
         # user_id = request.path.split("preference_customize")[1].replace("/", "")
-        # flag = int('')  # TODO 从request中取出数据库标志
+        # flag = int('')
         flag = int(flag)
         if len(user_id) < 1:
             return render(request, "login.html")
@@ -302,9 +306,12 @@ class UserPreference(View):
 
 
 class PreferenceAssess(View):
-    def get(self, request):
-        session_id = request.path.split("assess")[1].replace("/", "")
-        flag = int('')  # TODO 从request中取出数据库标志
+    """
+    推荐评估
+    """
+    def get(self, request, session_id, flag):
+        # session_id = request.path.split("assess")[1].replace("/", "")
+        # flag = int('')
         if session_id is None or len(session_id) < 1:
             return render(request, "login.html")
         session = Session.objects.filter(id=session_id)
@@ -317,7 +324,8 @@ class PreferenceAssess(View):
         return render(request, "preference_assess.html", {
             "session": session,
             "documents": new,
-            "user": user
+            "user": user,
+            "flag": flag
         })
 
     def post(self, request):
@@ -339,7 +347,7 @@ class PreferenceAssess(View):
 
 class RecordPreference(View):
     def get(self, request, user_id):
-        flag = int('')  # TODO 从request中取出数据库标志
+        flag = int('')
         user = UserProfile.objects.filter(id=user_id)[0]
         return render(request, "record_preference.html", {
             "user": user,

@@ -68,6 +68,7 @@
             async: false,
             success: function (result) {
                 if (result["success"]) {
+                    alert("Submit success.Enter documents list.");
                     window.location = `/doc_browse/list/{{user.id}}/{{flag}}/`;
                 }
             }
@@ -87,7 +88,7 @@
             async: false,
             success: function (result) {
                 if (result["success"]) {
-                    {#window.location = `{% url 'RetrievalCore:document_list' user_id=user.id flag=flag %}`;#}
+                    window.location = `/doc_browse/list/{{user.id}}/{{flag}}/`;
                 }
             }
         });
