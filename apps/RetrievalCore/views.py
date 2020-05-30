@@ -346,15 +346,17 @@ class PreferenceAssess(View):
 
 
 class RecordPreference(View):
-    def get(self, request, user_id):
-        flag = int('')
+    def get(self, request, user_id, flag):
+        flag = int(flag)
         user = UserProfile.objects.filter(id=user_id)[0]
         return render(request, "record_preference.html", {
             "user": user,
-            "classification": classification[flag]
+            "classification": classification[flag],
+            "flag": flag
         })
 
-    def post(self, request, user_id):
+    def post(self, request, user_id, flag):
+        flag = int(flag)
         json_response = {
             "success": False,
             "msg": "",
