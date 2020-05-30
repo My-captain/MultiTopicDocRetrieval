@@ -49,7 +49,7 @@
             },
             async: false,
             success: function (result) {
-                window.location = '{% url 'User:preference_assess' %}{{ session.id }}/';
+                window.location = '{% url 'User:preference_assess' session_id=session.id flag=flag %}';
             }
         });
     }
