@@ -73,7 +73,7 @@ class DocumentListView(View):
                 "flag": flag
             })
 
-    def post(self, request):
+    def post(self, request, user_id, flag):
         """
         {
            "1":{
@@ -91,8 +91,9 @@ class DocumentListView(View):
             "redirect": None
         }
         user_relevance = json.loads(request.POST.get("session_relevance"))
-        user_id = request.POST.get("user_id")
-        flag = int(request.POST.get("flag"))
+        # user_id = request.POST.get("user_id")
+        # flag = int(request.POST.get("flag"))
+        flag = int(flag)
         json_response['flag'] = flag
         if len(user_id) < 1:
             json_response["redirect"] = "/user/login/"
@@ -328,15 +329,16 @@ class PreferenceAssess(View):
             "flag": flag
         })
 
-    def post(self, request):
+    def post(self, request, session_id, flag):
         json_response = {
             "success": False,
             "msg": "",
             "user_id": None,
             "redirect": None
         }
-        session_id = request.POST.get("session_id")
-        flag = int(request.POST.get("flag"))
+        # session_id = request.POST.get("session_id")
+        # flag = int(request.POST.get("flag"))
+        flag = int(flag)
         session = Session.objects.filter(id=session_id).all()[0]
         user_preference = request.POST.get("user_preference")
         session.precision, session.default_precision = tool.calc_precision(json.loads(user_preference), session.documents.all())
@@ -365,7 +367,6 @@ class RecordPreference(View):
         }
         user = UserProfile.objects.filter(id=user_id)[0]
         user_preference = request.POST.get("user_preference")
-        flag = int(request.POST.get("flag"))
         D_record = DVectorRecord.objects.create(user=user)
         D_record.user_D_vector = user_preference
         D_record.sys_D_vector = user.D_vector
