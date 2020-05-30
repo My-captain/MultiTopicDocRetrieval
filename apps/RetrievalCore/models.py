@@ -8,18 +8,18 @@ from RetrievalCore import CommonTools
 
 
 class Document(models.Model):
-    title = models.CharField(max_length=2048, verbose_name="文献标题", null=False, blank=False)
-    publish_year = models.IntegerField(default=2019, verbose_name="发布年份")
-    authors = models.TextField(verbose_name="作者列表")
-    abstract = models.TextField(verbose_name="文献摘要")
-    doi_url = models.TextField(verbose_name="原文详情页链接")
-    references = models.TextField(verbose_name="引用列表")
-    publication = models.TextField(verbose_name="文献发表信息")
-    classification = models.IntegerField(verbose_name="所属类别", default=-1, null=True, blank=True)
-    flag = models.IntegerField(verbose_name="数据库标志")
+    title = models.CharField(max_length=2048, verbose_name="Title", null=False, blank=False)
+    publish_year = models.IntegerField(default=2019, verbose_name="Publish Year")
+    authors = models.TextField(verbose_name="Authors")
+    abstract = models.TextField(verbose_name="Abstract")
+    doi_url = models.TextField(verbose_name="DOI URL")
+    references = models.TextField(verbose_name="References")
+    publication = models.TextField(verbose_name="Publication")
+    classification = models.IntegerField(verbose_name="Classification", default=-1, null=True, blank=True)
+    flag = models.IntegerField(verbose_name="DataBase Flag")
 
     class Meta:
-        verbose_name = "文献"
+        verbose_name = "Documents"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -50,16 +50,16 @@ class Document(models.Model):
 
 class UserProfile(AbstractUser):
     # 继承AbstractUser类
-    username = models.CharField(max_length=50, unique=True, verbose_name=u"昵称", default="")
-    D_vector_female = models.TextField(verbose_name="D向量", null=True, blank=True)
-    P_vector_female = models.TextField(verbose_name="P向量", null=True, blank=True)
-    D_vector_male = models.TextField(verbose_name="D向量", null=True, blank=True)
-    P_vector_male = models.TextField(verbose_name="P向量", null=True, blank=True)
-    D_vector_older = models.TextField(verbose_name="D向量", null=True, blank=True)
-    P_vector_older = models.TextField(verbose_name="P向量", null=True, blank=True)
+    username = models.CharField(max_length=50, unique=True, verbose_name="Username", default="")
+    D_vector_female = models.TextField(verbose_name="D vector", null=True, blank=True)
+    P_vector_female = models.TextField(verbose_name="P vector", null=True, blank=True)
+    D_vector_male = models.TextField(verbose_name="D vector", null=True, blank=True)
+    P_vector_male = models.TextField(verbose_name="P vector", null=True, blank=True)
+    D_vector_older = models.TextField(verbose_name="D vector", null=True, blank=True)
+    P_vector_older = models.TextField(verbose_name="P vector", null=True, blank=True)
 
     class Meta:
-        verbose_name = "用户信息"
+        verbose_name = "UserProfile"
         verbose_name_plural = verbose_name
         db_table = "user_profile"
 
@@ -92,15 +92,15 @@ class UserProfile(AbstractUser):
 
 
 class Session(models.Model):
-    user = models.ForeignKey(UserProfile, verbose_name="会话用户", null=False, blank=False, on_delete=models.CASCADE)
-    documents = models.ManyToManyField(Document, verbose_name="会话文档")
-    D_vector = models.TextField(verbose_name="D向量", null=True, blank=True)
-    P_vector = models.TextField(verbose_name="P向量", null=True, blank=True)
-    precision = models.FloatField(verbose_name="此session的准确率", null=True, blank=True)
-    default_precision = models.FloatField(verbose_name="默认文档流顺序的准确率", null=True, blank=True)
+    user = models.ForeignKey(UserProfile, verbose_name="User", null=False, blank=False, on_delete=models.CASCADE)
+    documents = models.ManyToManyField(Document, verbose_name="Documents")
+    D_vector = models.TextField(verbose_name="D vector", null=True, blank=True)
+    P_vector = models.TextField(verbose_name="P vector", null=True, blank=True)
+    precision = models.FloatField(verbose_name="Precision By User", null=True, blank=True)
+    default_precision = models.FloatField(verbose_name="Precision By Default", null=True, blank=True)
 
     class Meta:
-        verbose_name = "会话"
+        verbose_name = "Session"
         verbose_name_plural = verbose_name
 
     def get_D_vector(self):
@@ -121,14 +121,14 @@ class Session(models.Model):
 
 
 class DVectorRecord(models.Model):
-    user = models.ForeignKey(UserProfile, verbose_name="用户", on_delete=models.CASCADE, null=False, blank=False)
-    user_D_vector = models.TextField(verbose_name="用户D向量", null=True, blank=True)
-    sys_D_vector = models.TextField(verbose_name="系统计算的D向量", null=True, blank=True)
-    submit_time = models.DateTimeField(verbose_name="提交时间", null=True, blank=True)
-    flag = models.IntegerField(verbose_name="数据库标志")
+    user = models.ForeignKey(UserProfile, verbose_name="User", on_delete=models.CASCADE, null=False, blank=False)
+    user_D_vector = models.TextField(verbose_name="D vector of User", null=True, blank=True)
+    sys_D_vector = models.TextField(verbose_name="D vector of Algorithm", null=True, blank=True)
+    submit_time = models.DateTimeField(verbose_name="Submit Time", null=True, blank=True)
+    flag = models.IntegerField(verbose_name="DataBase Flag")
 
     class Meta:
-        verbose_name = "D向量比对表"
+        verbose_name = "D vector"
         verbose_name_plural = verbose_name
 
     def get_user_D_vector(self):
@@ -148,4 +148,7 @@ class DVectorRecord(models.Model):
         return D
 
     def __str__(self):
-        return "{0}:{1}".format(self.user.username, self.submit_time.strftime("%Y/%m/%d:%H:%M:%S"))
+        if self.submit_time is None:
+            return "{0}".format(self.user.username)
+        else:
+            return "{0}:{1}".format(self.user.username, self.submit_time.strftime("%Y/%m/%d:%H:%M:%S"))

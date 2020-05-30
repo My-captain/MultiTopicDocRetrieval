@@ -1,5 +1,12 @@
+from xadmin.views import CommAdminView
 import xadmin
 from RetrievalCore.models import Document, UserProfile, Session, DVectorRecord
+
+
+class GlobalSetting(object):
+    site_title = "MultiTopic Document Retrieval System"
+    site_footer = "Nanjing University of Science & Technology"
+    menu_style = "accordion"
 
 
 class DocumentAdmin(object):
@@ -37,6 +44,7 @@ class DVectorRecordAdmin(object):
     show_detail_fields = ["user", "user_D_vector", "sys_D_vector", "submit_time", "flag"]
 
 
+xadmin.site.register(CommAdminView, GlobalSetting)
 xadmin.site.register(Document, DocumentAdmin)
 # xadmin.site.register(UserProfile, UserProfileAdmin)
 xadmin.site.register(Session, SessionAdmin)
