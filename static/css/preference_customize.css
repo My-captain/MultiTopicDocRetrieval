@@ -1,0 +1,62 @@
+.cursor-point{
+    cursor: pointer;
+}
+.category-list{
+    margin: 0 auto;
+    width: 680px;
+    text-align: center;
+}
+.category-item{
+    margin-top: 80px;
+    margin-bottom: 30px;
+    list-style: none;
+    overflow: hidden;
+}
+
+.submit-btn {
+    width: 60px;
+    float: left;
+    border-radius: 4px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.skip-btn {
+    width: 60px;
+    margin-left: 50px;
+    float: left;
+    border-radius: 4px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+.btn-container{
+    overflow: hidden;
+    margin: 0 auto;
+    width: 360px;
+}
+.category-label{
+    float: left;
+    font-weight: 600;
+    width: 80px;
+    text-align: left;
+}
+.preference-label {
+    float: right;
+}
+.slider-horizontal{
+    float: left;
+    margin-left: 200px;
+}
+.slider-selection{
+    background: #0658bd;
+}
+.back-btn{
+    position: fixed;
+    top: 60px;
+    left: 60px;
+    border-radius: 4px;
+}

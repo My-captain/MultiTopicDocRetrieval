@@ -134,8 +134,31 @@ STATICFILES_DIRS = (
     # os.path.join(BASE_DIR, "/static/css/"),
 )
 
+# 推荐算法相关参数
+CLASS_NUM = [5, 5, 5]
+SESSION_NUM = [300, 150, 300]
+ETA = 0.5
+classification = [[{"category_name": 'pregnancy and ert', "category_code": 0},
+                   {"category_name": 'dysmenorrhea and menstruation', "category_code": 1},
+                   {"category_name": 'sterilization and delivery', "category_code": 2},
+                   {"category_name": 'preterm labor and ectopic pregnancy', "category_code": 3},
+                   {"category_name": 'menopause and premature menopause', "category_code": 4}],
+                  [{"category_name": 'std and sex', "category_code": 0},
+                   {"category_name": 'prostate cancer and sex', "category_code": 1},
+                   {"category_name": 'infertility and fertility', "category_code": 2},
+                   {"category_name": 'vasectomy and family planning', "category_code": 3},
+                   {"category_name": 'semen and infertility', "category_code": 4}],
+                  [{"category_name": 'stroke and cataract', "category_code": 0},
+                   {"category_name": 'mci and dementia', "category_code": 1},
+                   {"category_name": 'tremor and essential tremor', "category_code": 2},
+                   {"category_name": 'menopause and premature menopause', "category_code": 3},
+                   {"category_name": 'prostate cancer and incontinence', "category_code": 4}]
+                  ]
+
 
 Superuser = {
     "account": "NJUST",
     "password": "admin1234"
 }
+
+

@@ -12,7 +12,6 @@
 .doc_list_card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-
 .doc_title {
     font-size: 18px;
     font-family: Merriweather, serif;
@@ -59,6 +58,10 @@
 }
 
 .doc_subtract {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
     height: auto;
     margin-bottom: 1rem;
     margin-top: 1rem;
@@ -69,4 +72,26 @@
     color: #333;
     font-family: Merriweather Sans, sans-serif;
     line-height: 1.4;
+}
+.exit-session-button{
+    cursor: pointer;
+    margin: 0 auto 100px auto;
+    height: 28px;
+    line-height: 28px;
+    width: 80px;
+    text-align: center;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+.preference-customize-btn{
+    position: fixed;
+    top: 60px;
+    left: 10px;
+    box-shadow: #7291e8 0 0 6px 2px;
+}
+.preference-record-btn{
+    position: fixed;
+    top: 120px;
+    left: 10px;
+    box-shadow: #058498 0 0 6px 2px;
 }

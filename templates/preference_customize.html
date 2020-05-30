@@ -27,8 +27,8 @@
     {% endfor %}
 </ul>
 <div class="btn-container">
-    <div class="btn-info submit-btn" onclick="preference_customize()">Submit</div>
-    <div class="btn-secondary skip-btn" onclick="preference_initialize()">Skip</div>
+    <div class="cursor-point btn-info submit-btn" onclick="preference_customize()">Submit</div>
+    <div class="cursor-point btn-secondary skip-btn" onclick="preference_initialize()">Skip</div>
 </div>
 {% csrf_token %}
 <script type="text/javascript" src="/static/js/frame/jquery.min.js"></script>
@@ -57,7 +57,7 @@
             }
         });
         $.ajax({
-            url: "{% url 'User:user_preference' %}",
+            url: "{% url 'User:user_preference' user_id=user.id flag=flag %}",
             type: "post",
             dataType: "json",
             data: {
@@ -68,7 +68,7 @@
             async: false,
             success: function (result) {
                 if (result["success"]) {
-                    window.location = `/doc_browse/list/${result["user_id"]}`;
+                    window.location = `/doc_browse/list/{{user.id}}/{{flag}}/`;
                 }
             }
         });
@@ -76,7 +76,7 @@
 
     function preference_initialize() {
         $.ajax({
-            url: "{% url 'User:user_preference' %}",
+            url: "{% url 'User:user_preference' user_id=user.id flag=flag %}",
             type: "post",
             dataType: "json",
             data: {
@@ -87,7 +87,7 @@
             async: false,
             success: function (result) {
                 if (result["success"]) {
-                    window.location = `/doc_browse/list/${result["user_id"]}`;
+                    {#window.location = `{% url 'RetrievalCore:document_list' user_id=user.id flag=flag %}`;#}
                 }
             }
         });

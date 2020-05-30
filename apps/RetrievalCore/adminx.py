@@ -4,13 +4,13 @@ from RetrievalCore.models import Document, UserProfile, Session, DVectorRecord
 
 class DocumentAdmin(object):
     list_display = ["title", "publish_year", "authors", "abstract", "doi_url", "references", "publication",
-                    "classification", "feature_vector", "flag"]
+                    "classification", "flag"]
     search_fields = ["title", "publish_year", "authors", "abstract", "doi_url", "references", "publication",
-                     "classification", "feature_vector", "flag"]
+                     "classification", "flag"]
     list_filter = ["title", "publish_year", "authors", "abstract", "doi_url", "references", "publication",
-                   "classification", "feature_vector", "flag"]
+                   "classification", "flag"]
     show_detail_fields = ["title", "publish_year", "authors", "abstract", "doi_url", "references", "publication",
-                          "classification", "feature_vector", "flag"]
+                          "classification", "flag"]
 
 
 class UserProfileAdmin(object):

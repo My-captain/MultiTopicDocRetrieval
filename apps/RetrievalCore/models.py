@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractUser
 from datetime import datetime
 import json
 from django.utils import timezone
+from MultiTopicDocRetrieval.settings import CLASS_NUM, SESSION_NUM, ETA, classification
+from RetrievalCore import CommonTools
 
 
 class Document(models.Model):
@@ -14,7 +16,6 @@ class Document(models.Model):
     references = models.TextField(verbose_name="引用列表")
     publication = models.TextField(verbose_name="文献发表信息")
     classification = models.IntegerField(verbose_name="所属类别", default=-1, null=True, blank=True)
-    feature_vector = models.TextField(verbose_name="特征向量", null=True, blank=True)
     flag = models.IntegerField(verbose_name="数据库标志")
 
     class Meta:
@@ -29,24 +30,22 @@ class Document(models.Model):
         获取当前文献的所有作者
         :return: List<author>
         """
-        author_list = json.loads(self.authors)
-        return author_list
+        try:
+            author_list = json.loads(self.authors)
+            return author_list
+        except Exception as e:
+            return list()
 
     def get_references(self):
         """
         获取当前文献的所有引用列表
         :return: List<reference>
         """
-        author_list = json.loads(self.references)
-        return author_list
-
-    def get_feature_vector(self):
-        """
-        获取当前文献的特征向量
-        :return: List<float>
-        """
-        feature = json.loads(self.feature_vector)
-        return feature
+        try:
+            reference_list = json.loads(self.references)
+            return reference_list
+        except Exception as e:
+            return list()
 
 
 class UserProfile(AbstractUser):
@@ -70,8 +69,11 @@ class UserProfile(AbstractUser):
         :return: List<D_i>
         """
         D_vectors = [self.D_vector_female, self.D_vector_male, self.D_vector_older]
-        D = json.loads(D_vectors[flag])
-        return D
+        try:
+            D = json.loads(D_vectors[flag])
+            return D
+        except Exception as e:
+            return CommonTools.initial_d_p_vector(CLASS_NUM[flag])[0]
 
     def get_P_vector(self, flag):
         """
@@ -79,8 +81,11 @@ class UserProfile(AbstractUser):
         :return: List<P_i>
         """
         P_vectors = [self.P_vector_female, self.P_vector_male, self.P_vector_older]
-        P = json.loads(P_vectors[flag])
-        return P
+        try:
+            P = json.loads(P_vectors[flag])
+            return P
+        except Exception as e:
+            return CommonTools.initial_d_p_vector(CLASS_NUM[flag])[1]
 
     def __str__(self):
         return self.username
